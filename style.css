@@ -1,0 +1,393 @@
+/* ==============================
+   整個網頁 (body)
+   ============================== */
+
+body {
+
+    /* 網頁背景顏色 */
+    background-color: #f5f5f5;
+
+    /* 讓所有文字、按鈕都置中 */
+    text-align: center;
+
+    /* 網頁使用的字體
+       Arial 找不到時，就使用系統預設 sans-serif */
+    font-family: Arial, sans-serif;
+}
+
+
+/* ==============================
+   「開始抽！」按鈕
+   # 代表找到 id="pickButton"
+   ============================== */
+
+#pickButton {
+
+    /* 按鈕背景顏色 */
+    background-color: #ff9800;
+
+    /* 按鈕文字顏色 */
+    color: white;
+
+    /* 移除瀏覽器預設邊框 */
+    border: none;
+
+    /* 按鈕內部留白
+       第一個數字：上下
+       第二個數字：左右 */
+    padding: 15px 30px;
+
+    /* 按鈕文字大小 */
+    font-size: 20px;
+
+    /* 按鈕圓角 */
+    border-radius: 10px;
+
+    /* 滑鼠移到按鈕時變成手指 */
+    cursor: pointer;
+}
+
+/* ==============================
+   左右版面
+   ============================== */
+
+.container{
+
+    display:grid;
+
+    grid-template-columns:250px 1fr 250px;
+
+    gap:30px;
+
+    align-items:start;
+
+    margin-top:30px;
+
+}
+
+/* 左邊 */
+
+.leftPanel{
+
+    min-height:400px;
+
+}
+
+/* 中間 */
+.mainContent{
+
+    display:flex;
+
+    justify-content:center;
+
+}
+
+/* 右邊 */
+.restaurantPanel{
+
+    background:white;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+
+}
+
+/* ==============================
+   餐廳資訊卡片
+   ============================== */
+
+#result {
+
+    /* 卡片背景 */
+    background-color: white;
+
+    /* 卡片寬度 */
+    width: 600px;
+
+    /* 讓卡片置中 */
+    margin: 30px auto;
+
+    /* 卡片內部空間 */
+    padding: 20px;
+
+    /* 圓角 */
+    border-radius: 15px;
+
+    /* 陰影效果 */
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+
+}
+
+#result a {
+
+    display: inline-block;
+
+    /* 按鈕背景 */
+    background-color: #4caf50;
+
+    /* 文字顏色 */
+    color:white;
+
+    /* 取消底線 */
+    text-decoration:none;
+
+    /* 內距 */
+    padding:10px 20px;
+
+    /* 圓角 */
+    border-radius:8px;
+
+    /* 上方距離 */
+    margin-top:15px;
+
+}
+
+/* ==============================
+   菜單圖片排列
+   ============================== */
+
+.menuImages {
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:flex-start;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+}
+
+
+/* 菜單圖片 */
+
+.menuImage {
+
+    max-width: 250px;
+
+    height: auto;
+
+    object-fit: contain;
+
+    cursor: pointer;
+
+}
+
+
+.menuImage:hover {
+
+    transform: scale(1.05);
+
+}
+
+
+/* 手機版 */
+
+@media (max-width:600px){
+
+    .menuImages{
+
+        gap:10px;
+
+    }
+
+
+    .menuImage{
+
+        width:45%;
+
+        height:auto;
+
+    }
+
+}
+
+/* ==============================
+   Lightbox 燈箱效果
+   ============================== */
+#lightbox {
+
+    display:none;
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:100%;
+
+    background:rgba(0,0,0,0.8);
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:999;
+
+}
+
+
+
+#lightboxImage {
+
+
+    max-width:90%;
+
+
+    max-height:90%;
+
+
+    border-radius:10px;
+
+
+}
+
+/* 餐廳招牌圖片 */
+
+.restaurantImage {
+
+    width:50px;
+
+    height:50px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+}
+
+
+/* 標題排列 */
+
+.restaurantTitle {
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+}
+
+
+/* 類別圖案 */
+
+.typeIcon {
+
+    width:25px;
+
+    height:25px;
+
+    object-fit:contain;
+
+    position:relative;
+
+    top:5px;
+
+}
+
+.categoryTitle{
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    margin-top:20px;
+
+    margin-bottom:10px;
+
+    text-align:left;
+
+}
+
+.restaurantItem{
+
+    display:block;
+
+    margin-left:30px;   /* 讓店家往右縮排 */
+
+    margin-bottom:8px;
+
+    text-align:left;
+
+}
+
+
+.restaurantList{
+
+    display:none;
+
+    margin-left:30px;
+
+}
+
+#expandAll,
+#collapseAll{
+
+
+    background-color:#4caf50;
+
+    color:white;
+
+    border:none;
+
+    padding:8px 15px;
+
+    margin:5px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+
+#expandAll:hover,
+#collapseAll:hover{
+
+    opacity:0.8;
+
+}
+
+.categoryIcon{
+
+
+    width:30px;
+
+    height:30px;
+
+    object-fit:contain;
+
+    margin-right:8px;
+
+    vertical-align:middle;
+
+
+}
+.categoryIcon {
+
+    width: 32px;
+    height: 32px;
+
+    transition: transform 0.3s ease;
+
+}
+
+
+/* 滑鼠移到右側分類圖片 */
+
+.categoryIcon:hover {
+
+    transform: scale(1.25) rotate(10deg);
+
+}

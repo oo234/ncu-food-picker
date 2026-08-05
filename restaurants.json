@@ -1,0 +1,1229 @@
+[
+    {   "id": 1,
+        "name": "掌窩。早ㄛ~",
+        "type": "早午餐",
+        "restaurantImage": "sign/掌窩.png",
+        "typeIcon": "Icon/早午餐.svg",
+        "place": "後門",
+
+        "openingHours": {
+
+            "Monday": [
+                {
+                    "open": "07:30",
+                    "close": "13:30"
+                }
+            ],
+
+            "Tuesday": [
+                {
+                    "open": "07:30",
+                    "close": "13:30"
+                }
+            ],
+
+            "Wednesday": [
+                {
+                    "open": "07:30",
+                    "close": "13:30"
+                }
+            ],
+
+            "Thursday": [
+                {
+                    "open": "07:30",
+                    "close": "13:30"
+                }
+            ],
+
+            "Friday": [
+                {
+                    "open": "07:30",
+                    "close": "13:30"
+                }
+            ],
+
+            "Saturday": [],
+
+            "Sunday": []
+
+        },
+
+        "menuImages": [
+            "menu/掌窩/掌窩_正.jpg",
+            "menu/掌窩/掌窩_反.jpg"
+        ],
+
+        "map": "https://reurl.cc/DY31L5"
+    },
+
+    {   "id": 2,
+        "name": "雙饗丼",
+        "type": "飯",
+        "restaurantImage": "sign/雙饗丼.png",
+        "typeIcon": "Icon/飯.svg",
+        "place": "後門",
+
+        "openingHours": {
+
+            "Monday": [
+                {
+                    "open": "11:00",
+                    "close": "14:00"
+                },
+                {
+                    "open": "16:30",
+                    "close": "20:00"
+                }
+            ],
+
+            "Tuesday": [
+                {
+                    "open": "11:00",
+                    "close": "14:00"
+                },
+                {
+                    "open": "16:30",
+                    "close": "20:00"
+                }
+            ],
+
+            "Wednesday": [
+                {
+                    "open": "11:00",
+                    "close": "14:00"
+                },
+                {
+                    "open": "16:30",
+                    "close": "20:00"
+                }
+            ],
+
+            "Thursday": [
+                {
+                    "open": "11:00",
+                    "close": "14:00"
+                },
+                {
+                    "open": "16:30",
+                    "close": "20:00"
+                }
+            ],
+
+            "Friday": [
+                {
+                    "open": "11:00",
+                    "close": "14:00"
+                },
+                {
+                    "open": "16:30",
+                    "close": "20:00"
+                }
+            ],
+
+            "Saturday": [
+                {
+                    "open": "11:00",
+                    "close": "14:00"
+                },
+                {
+                    "open": "16:30",
+                    "close": "20:00"
+                }
+            ],
+
+            "Sunday": [
+                {
+                    "open": "11:00",
+                    "close": "14:00"
+                },
+                {
+                    "open": "16:30",
+                    "close": "20:00"
+                }
+            ]
+        },
+
+        "menuImages": [
+            "menu/雙饗丼/雙饗丼1.jpg",
+            "menu/雙饗丼/雙饗丼2.jpg"
+        ],
+
+        "map": "https://reurl.cc/6X02k6"
+    },
+
+    {   "id": 3,
+        "name": "八方雲集",
+        "type": "水餃",
+        "restaurantImage": "sign/八方雲集.png",
+        "typeIcon": "Icon/水餃.svg",
+        "place": "後門",
+
+        "openingHours": {
+
+            "Monday": [
+                {
+                    "open": "11:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Tuesday": [
+                {
+                    "open": "11:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Wednesday": [
+                {
+                    "open": "11:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Thursday": [
+                {
+                    "open": "11:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Friday": [],
+
+            "Saturday": [
+                {
+                    "open": "11:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Sunday": [
+                {
+                    "open": "11:00",
+                    "close": "20:00"
+                }
+            ]
+
+        },
+
+        "menuImages": [
+            "menu/八方/八方雲集.jpg"
+        ],
+
+        "map": "https://reurl.cc/5XplbG"
+    },
+
+    {   "id": 4,
+        "name": "食間",
+        "type": "泰式",
+        "restaurantImage": "sign/食間.png",
+        "typeIcon": "Icon/泰式.svg",
+
+        "openingHours": {
+
+            "Monday": [
+                {
+                    "open": "11:00",
+                    "close": "14:00"
+                },
+                {
+                    "open": "16:30",
+                    "close": "19:30"
+                }
+            ],
+
+            "Tuesday": [
+                {
+                    "open": "11:00",
+                    "close": "14:00"
+                },
+                {
+                    "open": "16:30",
+                    "close": "19:30"
+                }
+            ],
+
+            "Wednesday": [
+                {
+                    "open": "11:00",
+                    "close": "14:00"
+                },
+                {
+                    "open": "16:30",
+                    "close": "19:30"
+                }
+            ],
+
+            "Thursday": [
+                {
+                    "open": "11:00",
+                    "close": "14:00"
+                },
+                {
+                    "open": "16:30",
+                    "close": "19:30"
+                }
+            ],
+
+            "Friday": [
+                {
+                    "open": "11:00",
+                    "close": "14:00"
+                },
+                {
+                    "open": "16:30",
+                    "close": "19:30"
+                }
+            ],
+
+            "Saturday": [],
+
+            "Sunday": []
+        },
+
+        "menuImages": [
+            "menu/食間/食間.jpg"
+        ],
+
+        "map": "https://reurl.cc/Vn16RY"
+    },
+
+    {   "id": 5,
+        "name": "食胖烤肉飯",
+        "type": "飯",
+        "restaurantImage": "sign/食胖烤肉飯.png",
+        "typeIcon": "Icon/飯.svg",
+
+        "openingHours": {
+
+            "Monday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Tuesday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Wednesday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Thursday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Friday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Saturday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Sunday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ]
+        },
+
+        "menuImages": [
+            "menu/烤肉飯/食胖烤肉飯.jpg"
+        ],
+
+        "map": "https://reurl.cc/qaNdoD"
+    },
+
+    {   "id": 6,
+        "name": "歐姆萊斯",
+        "type": "飯",
+        "restaurantImage": "sign/歐姆萊斯.png",
+        "typeIcon": "Icon/飯.svg",
+
+        "openingHours": {
+
+            "Monday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+                {
+                    "open": "17:00",
+                    "close": "20:30"
+                }
+            ],
+
+            "Tuesday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+                {
+                    "open": "17:00",
+                    "close": "20:30"
+                }
+            ],
+
+            "Wednesday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+                {
+                    "open": "17:00",
+                    "close": "20:30"
+                }
+            ],
+
+            "Thursday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+                {
+                    "open": "17:00",
+                    "close": "20:30"
+                }
+            ],
+
+            "Friday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+                {
+                    "open": "17:00",
+                    "close": "20:30"
+                }
+            ],
+
+            "Saturday": [],
+
+            "Sunday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+                {
+                    "open": "17:00",
+                    "close": "20:30"
+                }
+            ]
+        },
+
+        "menuImages": [
+            "menu/歐姆萊斯/歐姆萊斯.jpg"
+        ],
+
+        "map": "https://reurl.cc/zON8oe"
+    },
+
+    {   "id": 7,
+        "name": "迷路義麵屋",
+        "type": "義大利麵",
+        "restaurantImage": "sign/迷路.png",
+        "typeIcon": "Icon/義大利麵.svg",
+
+        "openingHours": {
+
+            "Monday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Tuesday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Wednesday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Thursday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Friday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Saturday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Sunday": []
+        },
+
+        "menuImages": [
+            "menu/迷路/迷路.jpg"
+        ],
+
+        "map": "https://reurl.cc/beE5qr"
+    },
+
+    {   "id": 8,
+        "name": "花路石鍋拌飯",
+        "type": "韓式",
+        "restaurantImage": "sign/花路.png",
+        "typeIcon": "Icon/韓式.svg",
+
+        "openingHours": {
+
+            "Monday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Tuesday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Wednesday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Thursday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Friday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Saturday": [],
+
+            "Sunday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ]
+        },
+
+        "menuImages": [
+            "menu/花路/花路.jpg"
+        ],
+
+        "map": "https://reurl.cc/xeQZXN"
+    },
+
+    {   "id": 9,
+        "name": "廚窗",
+        "type": "定食",
+        "restaurantImage": "sign/廚窗.png",
+        "typeIcon": "Icon/定食.svg",
+
+        "openingHours": {
+
+            "Monday": [],
+
+            "Tuesday": [
+                {
+                    "open": "11:30",
+                    "close": "13:30"
+                },
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Wednesday": [
+                {
+                    "open": "11:30",
+                    "close": "13:30"
+                },
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Thursday": [
+                {
+                    "open": "11:30",
+                    "close": "13:30"
+                },
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Friday": [
+                {
+                    "open": "11:30",
+                    "close": "13:30"
+                },
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Saturday": [
+                {
+                    "open": "11:30",
+                    "close": "13:30"
+                },
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Sunday": [
+                {
+                    "open": "11:30",
+                    "close": "13:30"
+                },
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ]
+        },
+
+        "menuImages": [
+            "menu/廚窗/廚窗.jpg"
+        ],
+
+        "map": "https://reurl.cc/jVG7OL"
+    },
+
+    {   "id": 10,
+        "name": "燒臘",
+        "type": "飯",
+        "restaurantImage": "sign/燒臘.png",
+        "typeIcon": "Icon/飯.svg",
+
+        "openingHours": {
+
+            "Monday": [
+                {
+                    "open": "11:00",
+                    "close": "14:30"
+                },
+                {
+                    "open": "16:30",
+                    "close": "19:30"
+                }
+            ],
+
+            "Tuesday": [
+                {
+                    "open": "11:00",
+                    "close": "14:30"
+                },
+                {
+                    "open": "16:30",
+                    "close": "19:30"
+                }
+            ],
+
+            "Wednesday": [
+                {
+                    "open": "11:00",
+                    "close": "14:30"
+                },
+                {
+                    "open": "16:30",
+                    "close": "19:30"
+                }
+            ],
+
+            "Thursday": [
+                {
+                    "open": "11:00",
+                    "close": "14:30"
+                },
+                {
+                    "open": "16:30",
+                    "close": "19:30"
+                }
+            ],
+
+            "Friday": [
+                {
+                    "open": "11:00",
+                    "close": "14:30"
+                },
+                {
+                    "open": "16:30",
+                    "close": "19:30"
+                }
+            ],
+
+            "Saturday": [],
+
+            "Sunday": []
+        },
+
+        "menuImages": [
+            "menu/燒臘/燒臘.jpg"
+        ],
+
+        "map": "https://reurl.cc/XxV6ND"
+    },
+
+    {   "id": 11,
+        "name": "咖哩老師",
+        "type": "飯",
+        "restaurantImage": "sign/咖哩老師.png",
+        "typeIcon": "Icon/飯.svg",
+
+        "openingHours": {
+
+            "Monday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+                {
+                    "open": "16:30",
+                    "close": "19:30"
+                }
+            ],
+
+            "Tuesday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+                {
+                    "open": "16:30",
+                    "close": "19:30"
+                }
+            ],
+
+            "Wednesday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+                {
+                    "open": "16:30",
+                    "close": "19:30"
+                }
+            ],
+
+            "Thursday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+                {
+                    "open": "16:30",
+                    "close": "19:30"
+                }
+            ],
+
+            "Friday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+                {
+                    "open": "16:30",
+                    "close": "19:30"
+                }
+            ],
+
+            "Saturday": [],
+
+            "Sunday": []
+        },
+
+        "menuImages": [
+            "menu/咖哩老師/咖哩老師.jpg"
+        ],
+
+        "map": "https://reurl.cc/OQ41LR"
+    },
+
+    {   "id": 12,
+        "name": "麥堡堡",
+        "type": "早午餐",
+        "restaurantImage": "sign/麥堡堡.png",
+        "typeIcon": "Icon/早午餐.svg",
+
+        "openingHours": {
+
+            "Monday": [
+                {
+                    "open": "06:00",
+                    "close": "14:00"
+                }
+            ],
+
+            "Tuesday": [
+                {
+                    "open": "06:00",
+                    "close": "14:00"
+                }
+            ],
+
+            "Wednesday": [
+                {
+                    "open": "06:00",
+                    "close": "14:00"
+                }
+            ],
+
+            "Thursday": [
+                {
+                    "open": "06:00",
+                    "close": "14:00"
+                }
+            ],
+
+            "Friday": [
+                {
+                    "open": "06:00",
+                    "close": "14:00"
+                }
+            ],
+
+            "Saturday": [
+                {
+                    "open": "06:00",
+                    "close": "14:00"
+                }
+            ],
+
+            "Sunday": []
+        },
+
+        "menuImages": [
+            "menu/麥堡堡/麥堡堡1.jpg",
+            "menu/麥堡堡/麥堡堡2.jpg"
+        ],
+
+        "map": "https://reurl.cc/eQOxAM"
+    },
+
+    {   "id": 13,
+        "name": "大嗑蔬菜蛋餅",
+        "type": "早午餐",
+        "restaurantImage": "sign/大嗑蔬菜蛋餅.png",
+        "typeIcon": "Icon/早午餐.svg",
+
+        "openingHours": {
+
+            "Monday": [
+                {
+                    "open": "07:00",
+                    "close": "14:30"
+                }
+            ],
+
+            "Tuesday": [
+                {
+                    "open": "07:00",
+                    "close": "14:30"
+                }
+            ],
+
+            "Wednesday": [
+                {
+                    "open": "07:00",
+                    "close": "14:30"
+                }
+            ],
+
+            "Thursday": [
+                {
+                    "open": "07:00",
+                    "close": "14:30"
+                }
+            ],
+
+            "Friday": [
+                {
+                    "open": "07:00",
+                    "close": "14:30"
+                }
+            ],
+
+            "Saturday": [
+                {
+                    "open": "07:00",
+                    "close": "14:30"
+                }
+            ],
+
+            "Sunday": [
+                {
+                    "open": "07:00",
+                    "close": "14:30"
+                }
+            ]
+        },
+
+        "menuImages": [
+            "menu/大嗑蔬菜蛋餅/大嗑蔬菜蛋餅.jpg"
+        ],
+
+        "map": "https://reurl.cc/RRXbyx"
+    },
+
+    {   "id": 14,
+        "name": "哈堡堡",
+        "type": "早午餐",
+        "restaurantImage": "sign/哈堡堡.png",
+        "typeIcon": "Icon/早午餐.svg",
+
+        "openingHours": {
+
+            "Monday": [
+                {
+                    "open": "06:15",
+                    "close": "13:30"
+                }
+            ],
+
+            "Tuesday": [
+                {
+                    "open": "06:15",
+                    "close": "13:30"
+                }
+            ],
+
+            "Wednesday": [],
+
+            "Thursday": [
+                {
+                    "open": "06:15",
+                    "close": "13:30"
+                }
+            ],
+
+            "Friday": [
+                {
+                    "open": "06:15",
+                    "close": "13:30"
+                }
+            ],
+
+            "Saturday": [
+                {
+                    "open": "06:15",
+                    "close": "13:30"
+                }
+            ],
+
+            "Sunday": [
+                {
+                    "open": "06:15",
+                    "close": "13:30"
+                }
+            ]
+        },
+
+        "menuImages": [
+            "menu/哈堡堡/哈堡堡.jpg"
+        ],
+
+        "map": "https://reurl.cc/6X0DXk"
+    },
+
+    {   "id": 15,
+        "name": "楊滇風",
+        "type": "泰式",
+        "restaurantImage": "sign/楊滇風.png",
+        "typeIcon": "Icon/泰式.svg",
+
+        "openingHours": {
+
+            "Monday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+
+                {
+                    "open": "17:00",
+                    "close": "21:00"
+                }
+            ],
+
+            "Tuesday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+
+                {
+                    "open": "17:00",
+                    "close": "21:00"
+                }
+            ],
+
+            "Wednesday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+
+                {
+                    "open": "17:00",
+                    "close": "21:00"
+                }
+            ],
+
+            "Thursday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+
+                {
+                    "open": "17:00",
+                    "close": "21:00"
+                }
+            ],
+
+            "Friday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+
+                {
+                    "open": "17:00",
+                    "close": "21:00"
+                }
+            ],
+
+            "Saturday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+
+                {
+                    "open": "17:00",
+                    "close": "21:00"
+                }
+            ],
+
+            "Sunday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+
+                {
+                    "open": "17:00",
+                    "close": "21:00"
+                }
+            ]
+        },
+
+        "menuImages": [
+            "menu/楊滇風/楊滇風.jpg"
+        ],
+
+        "map": "https://reurl.cc/NORZ7k"
+    },
+
+    {   "id": 16,
+        "name": "飽咖咖食堂",
+        "type": "飯",
+        "restaurantImage": "sign/飽咖咖食堂.png",
+        "typeIcon": "Icon/飯.svg",
+
+        "openingHours": {
+
+            "Monday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Tuesday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Wednesday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Thursday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Friday": [],
+
+            "Saturday": [],
+
+            "Sunday": []
+        },
+
+        "menuImages": [
+            "menu/飽咖咖食堂/飽咖咖食堂.jpg"
+        ],
+
+        "map": "https://reurl.cc/5Xp2e6"
+    }
+    
+    
+    
+]
