@@ -93,7 +93,7 @@ fetch("restaurants.json")
                  data-type="${type}">
 
 
-                <div class="categoryTitle">
+                <div class="categoryTitle"> 
 
 
                     <input
