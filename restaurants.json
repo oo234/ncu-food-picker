@@ -1222,6 +1222,76 @@
         ],
 
         "map": "https://reurl.cc/5Xp2e6"
+    },
+
+    {   "id": 17,
+        "name": "滿食記",
+        "type": "飯",
+        "restaurantImage": "sign/滿食記.png",
+        "typeIcon": "Icon/飯.svg",
+
+        "openingHours": {
+
+            "Monday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Tuesday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Wednesday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Thursday": [
+                {
+                    "open": "11:30",
+                    "close": "14:00"
+                },
+
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Friday": [],
+
+            "Saturday": [],
+
+            "Sunday": []
+        },
+
+        "menuImages": [
+            "menu/滿食記/滿食記.jpg"
+        ],
+
+        "map": "https://reurl.cc/5Xp2e6"
     }
     
     
