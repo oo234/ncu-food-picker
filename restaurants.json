@@ -1224,17 +1224,18 @@
         "map": "https://reurl.cc/5Xp2e6"
     },
 
-    {   "id": 18,
+    {   "id": 17,
         "name": "滿食記",
         "type": "飯",
         "restaurantImage": "sign/滿食記.png",
         "typeIcon": "Icon/飯.svg",
+        "place": "宵夜街",
 
         "openingHours": {
 
             "Monday": [
                 {
-                    "open": "11:30",
+                    "open": "12:00",
                     "close": "14:00"
                 },
 
@@ -1246,7 +1247,7 @@
 
             "Tuesday": [
                 {
-                    "open": "11:30",
+                    "open": "12:00",
                     "close": "14:00"
                 },
 
@@ -1258,7 +1259,7 @@
 
             "Wednesday": [
                 {
-                    "open": "11:30",
+                    "open": "12:00",
                     "close": "14:00"
                 },
 
@@ -1270,7 +1271,7 @@
 
             "Thursday": [
                 {
-                    "open": "11:30",
+                    "open": "12:00",
                     "close": "14:00"
                 },
 
@@ -1280,11 +1281,122 @@
                 }
             ],
 
-            "Friday": [],
+            "Friday": [
+                {
+                    "open": "12:00",
+                    "close": "14:00"
+                },
+
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
 
             "Saturday": [],
 
-            "Sunday": []
+            "Sunday": [
+                {
+                    "open": "12:00",
+                    "close": "14:00"
+                },
+
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ]
+        },
+
+        "menuImages": [
+            "menu/滿食記/滿食記.jpg"
+        ],
+
+        "map": "https://reurl.cc/5Xp2e6"
+    },
+
+    {   "id": 17,
+        "name": "熊讚鹹水雞",
+        "type": "飯",
+        "restaurantImage": "sign/滿食記.png",
+        "typeIcon": "Icon/飯.svg",
+        "place": "宵夜街",
+
+        "openingHours": {
+
+            "Monday": [
+                {
+                    "open": "12:00",
+                    "close": "14:00"
+                },
+
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Tuesday": [
+                {
+                    "open": "12:00",
+                    "close": "14:00"
+                },
+
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Wednesday": [
+                {
+                    "open": "12:00",
+                    "close": "14:00"
+                },
+
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Thursday": [
+                {
+                    "open": "12:00",
+                    "close": "14:00"
+                },
+
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Friday": [
+                {
+                    "open": "12:00",
+                    "close": "14:00"
+                },
+
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ],
+
+            "Saturday": [],
+
+            "Sunday": [
+                {
+                    "open": "12:00",
+                    "close": "14:00"
+                },
+
+                {
+                    "open": "17:00",
+                    "close": "20:00"
+                }
+            ]
         },
 
         "menuImages": [
@@ -1293,7 +1405,5 @@
 
         "map": "https://reurl.cc/5Xp2e6"
     }
-    
-    
     
 ]
