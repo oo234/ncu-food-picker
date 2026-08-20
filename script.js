@@ -1,670 +1,492 @@
 console.log("JavaScript 已成功載入！");
 
 let restaurants = [];
-
 let categoryBoxes = [];
+let isSpinning = false; // 紀錄目前是否正在播放動畫，防止亂點出錯
 
 const categoryIcon = {
-    "水餃":
-    "Icon/水餃.svg",
-
-    "早午餐":
-    "Icon/早午餐.svg",
-
-    "定食":
-    "Icon/定食.svg",
-
-    "泰式":
-    "Icon/泰式.svg",
-
-    "飯":
-    "Icon/飯.svg",
-
-    "義大利麵":
-    "Icon/義大利麵.svg",
-
-    "韓式":
-    "Icon/韓式.svg"
+    "水餃": "Icon/水餃.svg",
+    "早午餐": "Icon/早午餐.svg",
+    "定食": "Icon/定食.svg",
+    "泰式": "Icon/泰式.svg",
+    "飯": "Icon/飯.svg",
+    "義大利麵": "Icon/義大利麵.svg",
+    "韓式": "Icon/韓式.svg"
 };
 
 // ==============================
-// 載入餐廳資料
+// 判斷餐廳在特定時段是否有營業
 // ==============================
-fetch("restaurants.json")
-.then(function(response){
+function isOpenDuringSlot(restaurant, slot) {
+    if (slot === "none") return true; 
 
-    return response.json();
+    const today = new Date();
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const currentDay = days[today.getDay()];
+    const todayHours = restaurant.openingHours[currentDay];
 
-})
-.then(function(data){
+    if (!todayHours || todayHours.length === 0) return false;
 
-
-    restaurants = data;
-
-
-    console.log("餐廳資料載入成功！");
-    console.log(restaurants);
-
-
-
-    const restaurantCheckboxes =
-    document.getElementById("restaurantCheckboxes");
-
-
-
-    const groups = {};
-
-
-
-    // 分類整理
-
-    restaurants.forEach(function(restaurant){
-
-
-        const type = restaurant.type;
-
-
-        if(!groups[type]){
-
-            groups[type] = [];
-
-        }
-
-
-        groups[type].push(restaurant);
-
-
-    });
-
-
-
-    console.log(groups);
-
-
-
-    // 建立大分類
-
-    for(const type in groups){
-
-
-        restaurantCheckboxes.innerHTML += `
-
-            <div class="categoryBox"
-                 data-type="${type}">
-
-
-                <div class="categoryTitle"> 
-
-
-                    <input
-                        type="checkbox"
-                        class="categoryCheckbox"
-                        checked
-                    >
-
-
-                    <span class="categoryName">
-
-
-                        <img 
-                            src="${categoryIcon[type]}"
-                            class="categoryIcon"
-                        >
-
-
-                        ${type} (${groups[type].length})
-
-
-                    </span>
-
-
-                </div>
-
-
-                <div class="restaurantList">
-
-
-                </div>
-
-
-            </div>
-
-
-        `;
-
-
+    let targetStartMins, targetEndMins;
+    if (slot === "lunch") {
+        targetStartMins = 11 * 60 + 30;
+        targetEndMins = 13 * 60 + 30;
+    } else if (slot === "dinner") {
+        targetStartMins = 17 * 60 + 30;
+        targetEndMins = 19 * 60 + 30;
     }
 
-
-
-
-    categoryBoxes =
-    document.querySelectorAll(".categoryBox");
-
-
-
-    // 建立小店
-
-    categoryBoxes.forEach(function(box){
-
-
-        const type =
-        box.dataset.type;
-
-
-        const list =
-        box.querySelector(".restaurantList");
-
-
-
-        const categoryCheckbox =
-        box.querySelector(".categoryCheckbox");
-
-
-
-        groups[type].forEach(function(restaurant){
-
-
-
-            list.innerHTML += `
-
-
-                <label class="restaurantItem">
-
-
-                    <input
-                        type="checkbox"
-                        class="restaurantCheckbox"
-                        data-name="${restaurant.name}"
-                        checked
-                    >
-
-
-                    ${restaurant.name}
-
-
-                </label>
-
-
-            `;
-
-
-        });
-
-
-
-        const restaurantCheckboxes =
-        box.querySelectorAll(".restaurantCheckbox");
-
-
-
-        /*
-            大分類控制小分類
-        */
-
-        categoryCheckbox.addEventListener(
-        "change",
-        function(){
-
-
-            restaurantCheckboxes.forEach(function(cb){
-
-
-                cb.checked =
-                categoryCheckbox.checked;
-
-
-            });
-
-
-            categoryCheckbox.indeterminate=false;
-
-
-        });
-
-
-
-
-
-        /*
-            小分類控制大分類
-        */
-
-        restaurantCheckboxes.forEach(function(cb){
-
-
-            cb.addEventListener(
-            "change",
-            function(){
-
-
-                updateCategoryCheckbox();
-
-
-            });
-
-
-        });
-
-
-
-
-
-        /*
-            點文字展開
-        */
-
-        const categoryName =
-        box.querySelector(".categoryName");
-
-
-
-        categoryName.addEventListener(
-        "click",
-        function(){
-
-
-            if(list.style.display==="block"){
-
-
-                list.style.display="none";
-
-
-            }
-            else{
-
-
-                list.style.display="block";
-
-
-            }
-
-
-        });
-
-
-
-    });
-
-
-});
-
-function updateCategoryCheckbox(){
-
-
-    categoryBoxes.forEach(function(box){
-
-
-
-        const categoryCheckbox =
-        box.querySelector(".categoryCheckbox");
-
-
-
-        const restaurantCheckboxes =
-        box.querySelectorAll(".restaurantCheckbox");
-
-
-
-        let checkedCount = 0;
-
-
-
-        restaurantCheckboxes.forEach(function(cb){
-
-
-            if(cb.checked){
-
-                checkedCount++;
-
-            }
-
-
-        });
-
-
-
-        if(
-            checkedCount === restaurantCheckboxes.length
-        ){
-
-            categoryCheckbox.checked=true;
-
-            categoryCheckbox.indeterminate=false;
-
-
+    for (let i = 0; i < todayHours.length; i++) {
+        const openParts = todayHours[i].open.split(":");
+        const closeParts = todayHours[i].close.split(":");
+        const openMins = parseInt(openParts[0]) * 60 + parseInt(openParts[1]);
+        let closeMins = parseInt(closeParts[0]) * 60 + parseInt(closeParts[1]);
+
+        if (closeMins <= openMins) closeMins += 24 * 60; 
+
+        if (openMins < targetEndMins && closeMins > targetStartMins) {
+            return true;
         }
-
-        else if(
-            checkedCount===0
-        ){
-
-            categoryCheckbox.checked=false;
-
-            categoryCheckbox.indeterminate=false;
-
-
-        }
-
-        else{
-
-
-            categoryCheckbox.checked=false;
-
-            categoryCheckbox.indeterminate=true;
-
-
-        }
-
-
-
-    });
-
-
+    }
+    return false;
 }
 
 // ==============================
-// 全部選取 / 全部取消
+// 取得目前勾選的餐廳清單
 // ==============================
-
-
-const selectAll =
-document.getElementById("selectAll");
-
-
-const unselectAll =
-document.getElementById("unselectAll");
-
-// ==============================
-// 全部選取
-// ==============================
-
-selectAll.addEventListener("click",function(){
-
-
-    const checkboxes =
-    document.querySelectorAll(".restaurantCheckbox");
-
-
-    checkboxes.forEach(function(checkbox){
-
-
-        checkbox.checked = true;
-
-
+function getFilteredRestaurants() {
+    const filtered = [];
+    const checkedBoxes = document.querySelectorAll(".restaurantCheckbox:checked");
+    checkedBoxes.forEach(function(checkbox){
+        const restaurant = restaurants.find(r => r.name === checkbox.dataset.name);
+        if(restaurant) filtered.push(restaurant);
     });
-
-
-    updateCategoryCheckbox();
-
-
-});
-
-
-
+    return filtered;
+}
 
 // ==============================
-// 全部取消
+// 畫出圓形轉盤
 // ==============================
+function drawWheel(filteredList) {
+    const canvas = document.getElementById("wheelCanvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    const radius = canvas.width / 2;
+    const totalItems = filteredList.length;
+    
+    ctx.clearRect(0, 0, canvas.width, canvas.height); 
+    if (totalItems === 0) return;
 
-unselectAll.addEventListener("click",function(){
+    const sliceAngle = (2 * Math.PI) / totalItems;
 
+    for (let i = 0; i < totalItems; i++) {
+        const startAngle = i * sliceAngle - (Math.PI / 2); 
+        const endAngle = (i + 1) * sliceAngle - (Math.PI / 2);
 
-    const checkboxes =
-    document.querySelectorAll(".restaurantCheckbox");
+        ctx.beginPath();
+        ctx.moveTo(radius, radius);
+        ctx.arc(radius, radius, radius, startAngle, endAngle);
+        ctx.fillStyle = `hsl(${(i * 360) / totalItems}, 70%, 65%)`;
+        ctx.fill();
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = "#fff";
+        ctx.stroke();
 
+        ctx.save();
+        ctx.translate(radius, radius);
+        ctx.rotate(startAngle + sliceAngle / 2);
+        ctx.textAlign = "right";
+        ctx.fillStyle = "#fff";
+        ctx.font = "bold 20px Arial";
+        let text = filteredList[i].name;
+        if(text.length > 10) text = text.substring(0, 10) + '...';
+        ctx.fillText(text, radius - 30, 7); 
+        ctx.restore();
+    }
+}
 
-    checkboxes.forEach(function(checkbox){
-
-
-        checkbox.checked = false;
-
-
-    });
-
-
-    updateCategoryCheckbox();
-
-
-});
 // ==============================
-// 找到 HTML 裡的按鈕
+// 即時更新預覽畫面 (安靜狀態，無動畫)
 // ==============================
+function updatePreview() {
+    if (isSpinning) return; 
 
-// 找到 id="pickButton" 的按鈕
-// 並把它存到 button 變數中
-const button = document.getElementById("pickButton");
-// 找到顯示結果的區域
-const result = document.getElementById("result");
-// ==============================
-// 目前選擇的餐廳分類
-// 預設全部
-// ==============================
+    const result = document.getElementById("result");
+    const drawMethod = document.querySelector('input[name="drawMethod"]:checked').value;
+    const filtered = getFilteredRestaurants();
 
-
-
-// ==============================
-// 按鈕事件
-// ==============================
-
-// 當按鈕被點擊時
-button.addEventListener("click", function () {
-
-    // ==============================
-    // 確認餐廳資料是否載入完成
-    // ==============================
-
-    if (restaurants.length === 0) {
-
-        result.innerHTML = "⌛ 餐廳資料載入中，請稍後再試";
-
+    if (filtered.length === 0) {
+        result.innerHTML = "⚠️ 該條件下沒有餐廳，請重新選擇";
         return;
-
     }
 
-    // ==============================
-    // 取得勾選餐廳
-    // ==============================
+    if (drawMethod === "roulette") {
+        result.innerHTML = `
+            <div class="wheel-container">
+                <div class="wheel-pointer"></div>
+                <canvas id="wheelCanvas" width="500" height="500" class="wheel-canvas"></canvas>
+            </div>
+            <p style="font-size:20px; font-weight:bold; margin-top:15px; color: #ff9800;">點擊「開始抽！」來轉動幸運轉盤吧！</p>
+        `;
+        drawWheel(filtered);
+    } else if (drawMethod === "gacha") {
+        // 預覽狀態下，絕對不會有 .dropped-ball，也不會有動畫
+        result.innerHTML = `
+            <div class="gacha-machine-container" style="transform: scale(0.85); margin-top: 0;">
+                <div class="gacha-globe">
+                    <div class="gacha-ball ball-1"></div>
+                    <div class="gacha-ball ball-2"></div>
+                    <div class="gacha-ball ball-3"></div>
+                    <div class="gacha-ball ball-4"></div>
+                </div>
+                <div class="gacha-base">
+                    <div class="gacha-knob"></div>
+                    <div class="gacha-chute"></div>
+                </div>
+            </div>
+            <p style="font-size:20px; font-weight:bold; color: #ff9800;">扭蛋機準備就緒！點擊開始抽！</p>
+        `;
+    } else {
+        result.innerHTML = `
+            <div style="font-size: 80px; margin: 30px 0;">🎲</div>
+            <p style="font-size:20px; font-weight:bold; color: #ff9800;">準備好秒抽了嗎？</p>
+        `;
+    }
+}
 
-    const filteredRestaurants = [];
+// ==============================
+// 繪製左側篩選清單
+// ==============================
+function renderCheckboxes() {
+    const slot = document.querySelector('input[name="timeSlot"]:checked').value;
+    const selectedLocation = document.getElementById("locationSelect").value;
+    
+    const restaurantCheckboxes = document.getElementById("restaurantCheckboxes");
+    restaurantCheckboxes.innerHTML = ""; 
 
+    const groups = {};
+    const closedRestaurants = [];
 
-    const checkedBoxes =
-    document.querySelectorAll(
-        ".restaurantCheckbox:checked"
-    );
+    restaurants.forEach(function(restaurant){
+        if (selectedLocation !== "all" && restaurant.place !== selectedLocation) return;
 
+        const isOpen = isOpenDuringSlot(restaurant, slot);
+        if (isOpen) {
+            const type = restaurant.type;
+            if(!groups[type]) groups[type] = [];
+            groups[type].push(restaurant);
+        } else {
+            closedRestaurants.push(restaurant);
+        }
+    });
 
+    function renderCategory(typeName, restaurantList, isOpen) {
+        const iconHtml = categoryIcon[typeName] 
+            ? `<img src="${categoryIcon[typeName]}" class="categoryIcon">` 
+            : (isOpen ? `<span style="font-size: 24px; margin-right: 8px; vertical-align: middle;">🍽️</span>` : `<span style="font-size: 24px; margin-right: 8px; vertical-align: middle;">💤</span>`);
+            
+        const isChecked = isOpen ? "checked" : ""; 
+        const displayStyle = isOpen ? "" : "display: none;";
 
-    checkedBoxes.forEach(function(checkbox){
-
-
-        const restaurant =
-        restaurants.find(function(item){
-
-
-            return item.name === checkbox.dataset.name;
-
-
+        let listHtml = "";
+        restaurantList.forEach(function(restaurant) {
+            listHtml += `
+                <label class="restaurantItem">
+                    <input type="checkbox" class="restaurantCheckbox" data-name="${restaurant.name}" ${isChecked}>
+                    ${restaurant.name}
+                </label>
+            `;
         });
 
-
-        if(restaurant){
-
-            filteredRestaurants.push(restaurant);
-
-        }
-
-
-    });
-
-
-
-    if(filteredRestaurants.length === 0){
-
-
-        result.innerHTML =
-        "⚠️ 請至少選擇一家餐廳";
-
-
-        return;
-
-
+        restaurantCheckboxes.innerHTML += `
+            <div class="categoryBox" data-type="${typeName}">
+                <div class="categoryTitle"> 
+                    <input type="checkbox" class="categoryCheckbox" ${isChecked}>
+                    <span class="categoryName">
+                        ${iconHtml}
+                        ${typeName} (${restaurantList.length})
+                    </span>
+                </div>
+                <div class="restaurantList" style="${displayStyle}">
+                    ${listHtml}
+                </div>
+            </div>
+        `;
     }
 
-    // 隨機產生位置
+    for(const type in groups){
+        renderCategory(type, groups[type], true);
+    }
+    
+    if (closedRestaurants.length > 0) {
+        let slotNameText = slot === "lunch" ? "午餐未營業" : (slot === "dinner" ? "晚餐未營業" : "目前未營業");
+        renderCategory(slotNameText, closedRestaurants, false);
+    }
+
+    categoryBoxes = document.querySelectorAll(".categoryBox");
+
+    categoryBoxes.forEach(function(box){
+        const list = box.querySelector(".restaurantList");
+        const categoryCheckbox = box.querySelector(".categoryCheckbox");
+        const restaurantCheckboxes = box.querySelectorAll(".restaurantCheckbox");
+
+        categoryCheckbox.addEventListener("change", function(){
+            restaurantCheckboxes.forEach(cb => cb.checked = categoryCheckbox.checked);
+            categoryCheckbox.indeterminate = false;
+            updatePreview(); 
+        });
+
+        restaurantCheckboxes.forEach(function(cb){
+            cb.addEventListener("change", function(){
+                updateCategoryCheckbox();
+            });
+        });
+
+        const categoryName = box.querySelector(".categoryName");
+        categoryName.addEventListener("click", function(){
+            const currentDisplay = window.getComputedStyle(list).display;
+            list.style.display = currentDisplay === "none" ? "block" : "none";
+        });
+    });
+    
+    updateCategoryCheckbox();
+}
+
+// ==============================
+// 勾選狀態連動機制
+// ==============================
+function updateCategoryCheckbox(){
+    categoryBoxes.forEach(function(box){
+        const categoryCheckbox = box.querySelector(".categoryCheckbox");
+        const restaurantCheckboxes = box.querySelectorAll(".restaurantCheckbox");
+        let checkedCount = 0;
+
+        restaurantCheckboxes.forEach(cb => { if(cb.checked) checkedCount++; });
+
+        if(restaurantCheckboxes.length > 0 && checkedCount === restaurantCheckboxes.length){
+            categoryCheckbox.checked = true;
+            categoryCheckbox.indeterminate = false;
+        }
+        else if(checkedCount === 0){
+            categoryCheckbox.checked = false;
+            categoryCheckbox.indeterminate = false;
+        }
+        else{
+            categoryCheckbox.checked = false;
+            categoryCheckbox.indeterminate = true;
+        }
+    });
+    
+    updatePreview();
+}
+
+// ==============================
+// 初始化載入
+// ==============================
+fetch("restaurants_updated.json")
+.then(response => response.json())
+.then(data => {
+    restaurants = data;
+    console.log("餐廳資料載入成功！");
+
+    renderCheckboxes();
+
+    const timeSlotRadios = document.querySelectorAll('input[name="timeSlot"]');
+    timeSlotRadios.forEach(radio => radio.addEventListener("change", () => renderCheckboxes()));
+    
+    document.getElementById("locationSelect").addEventListener("change", () => renderCheckboxes());
+
+    const drawMethodRadios = document.querySelectorAll('input[name="drawMethod"]');
+    drawMethodRadios.forEach(radio => radio.addEventListener("change", updatePreview));
+});
+
+document.getElementById("selectAll").addEventListener("click",function(){
+    document.querySelectorAll(".restaurantCheckbox").forEach(cb => cb.checked = true);
+    updateCategoryCheckbox();
+});
+
+document.getElementById("unselectAll").addEventListener("click",function(){
+    document.querySelectorAll(".restaurantCheckbox").forEach(cb => cb.checked = false);
+    updateCategoryCheckbox();
+});
+
+// ==============================
+// 抽籤按鈕事件
+// ==============================
+document.getElementById("pickButton").addEventListener("click", function () {
+    if (isSpinning) return; 
+
+    const filteredRestaurants = getFilteredRestaurants();
+    const result = document.getElementById("result");
+
+    if(filteredRestaurants.length === 0){
+        result.innerHTML = "⚠️ 請至少選擇一家餐廳";
+        return;
+    }
+
+    isSpinning = true; 
+    
+    const drawMethod = document.querySelector('input[name="drawMethod"]:checked').value;
     const randomIndex = Math.floor(Math.random() * filteredRestaurants.length);
-
-
-    // 取得餐廳物件
     const randomRestaurant = filteredRestaurants[randomIndex];
 
-    // ==============================
-    // 取得今天的營業時間
-    // ==============================
-
-    // 取得今天的日期
     const today = new Date();
-
-    // 星期名稱對照表
-    const days = [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday"
-    ];
-
-    // 今天是星期幾（例如 Monday）
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const todayName = days[today.getDay()];
+    const todayHours = randomRestaurant.openingHours[todayName];
 
-    // 取得今天的營業時間
-    const todayHours =
-        randomRestaurant.openingHours[todayName];
-
-    // 看看 Console 會印出什麼
-    console.log("今天是：", todayName);
-    console.log("今天營業時間：", todayHours);
-
-    // 建立餐廳卡片
-    result.innerHTML = `
-
+    const finalResultHtml = `
         <h2 class="restaurantTitle">
-
-            <img 
-                src="${randomRestaurant.restaurantImage}"
-                class="restaurantImage"
-            >
-
+            <img src="${randomRestaurant.restaurantImage}" class="restaurantImage">
             ${randomRestaurant.name}
-
         </h2>
-
-
         <p class="restaurantType">
-
-            類型：
-            ${randomRestaurant.type}
-
-
-            <img 
-                src="${randomRestaurant.typeIcon}"
-                class="typeIcon"
-            >
-
+            類型：${randomRestaurant.type}
+            <img src="${randomRestaurant.typeIcon}" class="typeIcon">
         </p>
-
-
+        <p>🕒 今日營業時間：</p>
         <p>
-            🕒 今日營業時間：
-        </p>
-
-
-        <p>
-            ${todayHours.map(function(time){
-
-                return time.open + " - " + time.close;
-
-            }).join("<br>")}
-        </p>
-
-        <p>
-            🧾 菜單：
-        </p>
-
-        <div class="menuImages">
-
-            ${
-            randomRestaurant.menuImages 
-            ?
-            randomRestaurant.menuImages.map(function(image){
-
-                return `
-                    <img 
-                        src="${image}"
-                        class="menuImage"
-                        onclick="openImage('${image}')"
-                    >
-                `;
-
-            }).join("")
-            :
-            "目前沒有菜單圖片"
+            ${todayHours && todayHours.length > 0 
+                ? todayHours.map(time => time.open + " - " + time.close).join("<br>") 
+                : "今日公休"
             }
-
+        </p>
+        <p>🧾 菜單：</p>
+        <div class="menuImages">
+            ${randomRestaurant.menuImages && randomRestaurant.menuImages.length > 0
+                ? randomRestaurant.menuImages.map(image => `<img src="${image}" class="menuImage" onclick="openImage('${image}')">`).join("")
+                : "目前沒有菜單圖片"
+            }
         </div>
-
         <br>
-
-
-        <a href="${randomRestaurant.map}" target="_blank">
-            📍 查看位置
-        </a>
-
+        <a href="${randomRestaurant.map}" target="_blank">📍 查看位置</a>
+        <br><br>
+        <button onclick="isSpinning=false; updatePreview();" style="padding:10px 20px; background:#ccc; border:none; border-radius:8px; cursor:pointer;">重新抽籤</button>
     `;
 
+    if (drawMethod === "basic") {
+        result.innerHTML = finalResultHtml;
+        isSpinning = false;
+
+    } else if (drawMethod === "roulette") {
+        let canvas = document.getElementById("wheelCanvas");
+        if (!canvas) {
+            updatePreview();
+            canvas = document.getElementById("wheelCanvas");
+        }
+        
+        const totalItems = filteredRestaurants.length;
+        const sliceDeg = 360 / totalItems;
+        const randomOffset = (Math.random() * 0.8 - 0.4) * sliceDeg; 
+        const finalRotation = (360 * 6) - (randomIndex * sliceDeg + sliceDeg / 2 + randomOffset);
+
+        const statusP = canvas.parentElement.parentElement.querySelector("p");
+        if(statusP) statusP.innerText = "命運轉動中... 🎡";
+
+        setTimeout(() => {
+            canvas.style.transform = `rotate(${finalRotation}deg)`;
+        }, 50);
+
+        setTimeout(() => {
+            result.innerHTML = finalResultHtml;
+            isSpinning = false; 
+        }, 4200);
+
+    } else if (drawMethod === "gacha") {
+        
+        // 準備多種扭蛋顏色
+        const gachaColors = ["#ff4757", "#1e90ff", "#2ed573", "#ffa502", "#9b59b6", "#e84393"];
+        const randomColor = gachaColors[Math.floor(Math.random() * gachaColors.length)];
+
+        // 開始抽籤，畫面換成「準備掉落狀態」
+        result.innerHTML = `
+            <div class="gacha-machine-container" id="gachaMachine">
+                <div class="gacha-globe">
+                    <div class="gacha-ball ball-1"></div>
+                    <div class="gacha-ball ball-2"></div>
+                    <div class="gacha-ball ball-3"></div>
+                    <div class="gacha-ball ball-4"></div>
+                </div>
+                <div class="gacha-base">
+                    <div class="gacha-knob" id="gachaKnob"></div>
+                    <div class="gacha-chute"></div>
+                </div>
+                <!-- 修正：一定要放在這裡！在 globe 和 base 的外面，才不會被隱藏 -->
+                <div class="dropped-ball" id="droppedBall" style="background: linear-gradient(to bottom, ${randomColor} 50%, #fff 50%);"></div> 
+            </div>
+            <p style="font-size:20px; font-weight:bold; color: #ff9800; margin-top:20px;" id="gachaStatus">轉動旋鈕中...</p>
+        `;
+
+        const knob = document.getElementById("gachaKnob");
+        const droppedBall = document.getElementById("droppedBall");
+        const statusP = document.getElementById("gachaStatus");
+
+        // 轉動旋鈕
+        setTimeout(() => {
+            knob.classList.add("turn");
+        }, 100);
+
+        // 扭蛋俐落掉落 (無彈跳)
+        setTimeout(() => {
+            statusP.innerText = "扭蛋掉出來了！";
+            droppedBall.classList.add("drop");
+        }, 600);
+
+        // 切換到放大扭蛋畫面
+        setTimeout(() => {
+            result.innerHTML = `
+                <div class="zoom-ball-container" id="zoomBall">
+                    <div class="zoom-ball-top" style="background: ${randomColor};"></div>
+                    <div class="gacha-result-icon">🎉</div>
+                    <div class="zoom-ball-bottom"></div>
+                </div>
+                <p style="font-size:20px; font-weight:bold; color: #ff9800; margin-top:20px;" id="gachaStatus2">打開扭蛋...</p>
+            `;
+            
+            const zoomBall = document.getElementById("zoomBall");
+            const statusP2 = document.getElementById("gachaStatus2");
+            
+            setTimeout(() => {
+                zoomBall.classList.add("show");
+            }, 50);
+
+            setTimeout(() => {
+                statusP2.innerText = "登愣！";
+                zoomBall.classList.add("open");
+            }, 800);
+
+            setTimeout(() => {
+                result.innerHTML = finalResultHtml;
+                isSpinning = false; // 解除鎖定
+            }, 2000);
+
+        }, 1500); 
+    }
 });
 
 // ==============================
 // Lightbox 功能
 // ==============================
-
-
-// 找到 Lightbox 元件
-
-const lightbox =
-document.getElementById("lightbox");
-
-
-const lightboxImage =
-document.getElementById("lightboxImage");
-
-
-
-// 點圖片時開啟
+const lightbox = document.getElementById("lightbox");
+const lightboxImage = document.getElementById("lightboxImage");
 
 function openImage(image){
-
-    console.log("點擊圖片：", image);
-
-
     lightboxImage.src = image;
-
-
     lightbox.style.display = "flex";
-
 }
 
+lightbox.addEventListener("click", () => lightbox.style.display = "none");
 
+// ==============================
+// 側邊篩選面板 (Drawer) 控制
+// ==============================
+const togglePanelBtn = document.getElementById("togglePanelBtn");
+const closePanelBtn = document.getElementById("closePanelBtn");
+const restaurantPanel = document.querySelector(".restaurantPanel");
 
-// 點黑色背景關閉
-
-lightbox.addEventListener("click", function(){
-
-
-    lightbox.style.display = "none";
-
-
-});
+if (togglePanelBtn && restaurantPanel) {
+    togglePanelBtn.addEventListener("click", () => restaurantPanel.classList.toggle("open"));
+}
+if (closePanelBtn && restaurantPanel) {
+    closePanelBtn.addEventListener("click", () => restaurantPanel.classList.remove("open"));
+}

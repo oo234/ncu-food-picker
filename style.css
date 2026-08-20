@@ -3,13 +3,10 @@
    ============================== */
 
 body {
-
     /* 網頁背景顏色 */
     background-color: #f5f5f5;
-
     /* 讓所有文字、按鈕都置中 */
     text-align: center;
-
     /* 網頁使用的字體
        Arial 找不到時，就使用系統預設 sans-serif */
     font-family: Arial, sans-serif;
@@ -22,77 +19,104 @@ body {
    ============================== */
 
 #pickButton {
-
     /* 按鈕背景顏色 */
     background-color: #ff9800;
-
     /* 按鈕文字顏色 */
     color: white;
-
     /* 移除瀏覽器預設邊框 */
     border: none;
-
     /* 按鈕內部留白
        第一個數字：上下
        第二個數字：左右 */
     padding: 15px 30px;
-
     /* 按鈕文字大小 */
     font-size: 20px;
-
     /* 按鈕圓角 */
     border-radius: 10px;
-
     /* 滑鼠移到按鈕時變成手指 */
     cursor: pointer;
 }
 
 /* ==============================
-   左右版面
+   左右版面 (修改為單純置中)
    ============================== */
-
-.container{
-
-    display:grid;
-
-    grid-template-columns:250px 1fr 250px;
-
-    gap:30px;
-
-    align-items:start;
-
-    margin-top:30px;
-
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 30px;
+    width: 100%;
 }
 
 /* 左邊 */
-
-.leftPanel{
-
-    min-height:400px;
-
+.leftPanel {
+    display: none; /* 既然目前沒有內容，直接隱藏，才不會佔用空間 */
 }
 
 /* 中間 */
 .mainContent{
-
     display:flex;
-
     justify-content:center;
-
 }
 
-/* 右邊 */
-.restaurantPanel{
+/* ==============================
+   右邊：餐廳選擇面板 (改為滑動抽屜)
+   ============================== */
+.restaurantPanel {
+    position: fixed;
+    top: 0;
+    right: -350px; /* 預設隱藏在畫面右側外面 */
+    width: 300px;
+    height: 100vh; /* 高度佔滿整個螢幕 */
+    background: white;
+    padding: 20px;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.2); /* 讓側邊欄有一點左側陰影 */
+    overflow-y: auto; /* 內容過多時可以上下滾動 */
+    transition: right 0.3s ease-in-out; /* 加入滑動出現的動畫效果 */
+    z-index: 1000; /* 確保它在畫面最上層 */
+}
 
-    background:white;
+/* 面板展開狀態 */
+.restaurantPanel.open {
+    right: 0; /* 滑動到畫面邊緣 */
+}
 
-    padding:15px;
+/* 打開面板的懸浮按鈕樣式 */
+#togglePanelBtn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 999; /* 確保按鈕在畫面上方 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
 
-    border-radius:10px;
+#togglePanelBtn:hover {
+    background-color: #e68900;
+}
 
-    box-shadow:0 2px 8px rgba(0,0,0,.1);
+/* 關閉面板的按鈕樣式 */
+#closePanelBtn {
+    display: block;
+    width: 100%;
+    text-align: right;
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}
 
+#closePanelBtn:hover {
+    opacity: 0.7;
 }
 
 /* ==============================
@@ -100,49 +124,34 @@ body {
    ============================== */
 
 #result {
-
     /* 卡片背景 */
     background-color: white;
-
     /* 卡片寬度 */
     width: 600px;
-
     /* 讓卡片置中 */
     margin: 30px auto;
-
     /* 卡片內部空間 */
     padding: 20px;
-
     /* 圓角 */
     border-radius: 15px;
-
     /* 陰影效果 */
     box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
-
 }
 
 #result a {
-
     display: inline-block;
-
     /* 按鈕背景 */
     background-color: #4caf50;
-
     /* 文字顏色 */
     color:white;
-
     /* 取消底線 */
     text-decoration:none;
-
     /* 內距 */
     padding:10px 20px;
-
     /* 圓角 */
     border-radius:8px;
-
     /* 上方距離 */
     margin-top:15px;
-
 }
 
 /* ==============================
@@ -150,244 +159,379 @@ body {
    ============================== */
 
 .menuImages {
-
     display:flex;
-
     justify-content:center;
-
     align-items:flex-start;
-
     gap:15px;
-
     flex-wrap:wrap;
-
 }
-
 
 /* 菜單圖片 */
-
 .menuImage {
-
     max-width: 250px;
-
     height: auto;
-
     object-fit: contain;
-
     cursor: pointer;
-
 }
-
 
 .menuImage:hover {
-
     transform: scale(1.05);
-
 }
 
-
 /* 手機版 */
-
 @media (max-width:600px){
-
     .menuImages{
-
         gap:10px;
-
     }
-
-
     .menuImage{
-
         width:45%;
-
         height:auto;
-
     }
-
 }
 
 /* ==============================
    Lightbox 燈箱效果
    ============================== */
 #lightbox {
-
     display:none;
-
     position:fixed;
-
     top:0;
-
     left:0;
-
     width:100%;
-
     height:100%;
-
     background:rgba(0,0,0,0.8);
-
     justify-content:center;
-
     align-items:center;
-
     z-index:999;
-
 }
 
-
-
 #lightboxImage {
-
-
     max-width:90%;
-
-
     max-height:90%;
-
-
     border-radius:10px;
-
-
 }
 
 /* 餐廳招牌圖片 */
-
 .restaurantImage {
-
     width:50px;
-
     height:50px;
-
     object-fit:cover;
-
     border-radius:50%;
-
 }
-
 
 /* 標題排列 */
-
 .restaurantTitle {
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     gap:10px;
-
 }
 
-
 /* 類別圖案 */
-
 .typeIcon {
-
     width:25px;
-
     height:25px;
-
     object-fit:contain;
-
     position:relative;
-
     top:5px;
-
 }
 
 .categoryTitle{
-
     font-size:20px;
-
     font-weight:bold;
-
     margin-top:20px;
-
     margin-bottom:10px;
-
     text-align:left;
-
 }
 
 .restaurantItem{
-
     display:block;
-
     margin-left:30px;   /* 讓店家往右縮排 */
-
     margin-bottom:8px;
-
     text-align:left;
-
 }
 
-
 .restaurantList{
-
     display:none;
-
     margin-left:30px;
-
 }
 
 #expandAll,
 #collapseAll{
-
-
     background-color:#4caf50;
-
     color:white;
-
     border:none;
-
     padding:8px 15px;
-
     margin:5px;
-
     border-radius:8px;
-
     cursor:pointer;
-
 }
-
 
 #expandAll:hover,
 #collapseAll:hover{
-
     opacity:0.8;
-
 }
 
 .categoryIcon{
-
-
     width:30px;
-
     height:30px;
-
     object-fit:contain;
-
     margin-right:8px;
-
     vertical-align:middle;
-
-
 }
-.categoryIcon {
 
+.categoryIcon {
     width: 32px;
     height: 32px;
-
     transition: transform 0.3s ease;
-
 }
 
-
 /* 滑鼠移到右側分類圖片 */
-
 .categoryIcon:hover {
-
     transform: scale(1.25) rotate(10deg);
+}
 
+/* ==============================
+   抽籤動畫特效
+   ============================== */
+
+/* 🎡 圓形轉盤的容器 */
+.wheel-container {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    margin: 20px auto;
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    border: 6px solid #fff;
+    overflow: hidden; /* 確保畫布不會超出圓形 */
+}
+
+/* 繪製出來的轉盤本身 */
+.wheel-canvas {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    /* 動畫過渡：cubic-bezier 讓它有「先快後慢，最後緩緩停下」的真實物理感 */
+    transition: transform 4s cubic-bezier(0.1, 0.7, 0.1, 1);
+    transform: rotate(0deg);
+}
+
+/* 轉盤頂部的紅色指針 */
+.wheel-pointer {
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    /* 用邊框畫出一個倒三角形 */
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 35px solid #e74c3c;
+    z-index: 10;
+    filter: drop-shadow(0px 3px 3px rgba(0,0,0,0.4));
+}
+
+/* ==============================
+   🎁 真實扭蛋機 動畫特效
+   ============================== */
+
+/* 扭蛋機本體 */
+.gacha-machine-container {
+    position: relative;
+    width: 240px;
+    height: 380px;
+    margin: 20px auto;
+}
+
+/* 玻璃圓罩 */
+.gacha-globe {
+    position: relative;
+    width: 240px;
+    height: 240px;
+    background: rgba(220, 240, 255, 0.4);
+    border: 5px solid #bdc3c7;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 2;
+    box-shadow: inset -15px -15px 20px rgba(0,0,0,0.1);
+}
+
+/* 玻璃反光 */
+.gacha-globe::after {
+    content: "";
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    width: 60px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    transform: rotate(-45deg);
+}
+
+/* 紅色機台底座 */
+.gacha-base {
+    position: relative;
+    width: 180px;
+    height: 160px;
+    background: #e74c3c;
+    margin: -40px auto 0;
+    border-radius: 0 0 20px 20px;
+    z-index: 1;
+    box-shadow: inset -10px -10px 15px rgba(0,0,0,0.2);
+}
+
+/* 轉動旋鈕 */
+.gacha-knob {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: #ecf0f1;
+    border-radius: 50%;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 3px solid #bdc3c7;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    transition: transform 0.5s ease-in-out;
+}
+
+.gacha-knob::before {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 12px;
+    background: #95a5a6;
+    top: 21px;
+    left: 7px;
+    border-radius: 6px;
+}
+
+/* 旋鈕轉動動畫 */
+.gacha-knob.turn {
+    transform: translateX(-50%) rotate(360deg);
+}
+
+/* 出口洞口 (調低高度與位置，才不會跟旋鈕重疊) */
+.gacha-chute {
+    position: absolute;
+    width: 70px;
+    height: 50px;
+    background: #2c3e50;
+    bottom: 2px; /* 往下挪 */
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10px 10px 0 0;
+    box-shadow: inset 0 10px 15px rgba(0,0,0,0.5);
+    z-index: 3;
+}
+
+/* 裡面的各種扭蛋球 */
+.gacha-ball {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid rgba(0,0,0,0.1);
+    box-shadow: inset -5px -5px 10px rgba(0,0,0,0.2);
+}
+
+.ball-1 { background: linear-gradient(to bottom, #ff4757 50%, #fff 50%); top: 150px; left: 40px; transform: rotate(15deg); }
+.ball-2 { background: linear-gradient(to bottom, #1e90ff 50%, #fff 50%); top: 130px; left: 110px; transform: rotate(-25deg); }
+.ball-3 { background: linear-gradient(to bottom, #2ed573 50%, #fff 50%); top: 90px; left: 60px; transform: rotate(45deg); }
+.ball-4 { background: linear-gradient(to bottom, #ffa502 50%, #fff 50%); top: 160px; left: 140px; transform: rotate(-10deg); }
+
+/* 掉出來的扭蛋 */
+.dropped-ball {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid rgba(0,0,0,0.1);
+    z-index: 5; /* z-index 為 5，大於黑洞的 3，保證會在黑洞前面！ */
+    top: 150px;
+    left: 90px;
+    opacity: 0;
+}
+
+/* 俐落的掉落動畫 */
+.dropped-ball.drop {
+    animation: drop-animation 0.6s ease-in forwards;
+}
+
+@keyframes drop-animation {
+    0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+    60%  { transform: translateY(160px) rotate(180deg); opacity: 1; } /* 剛好掉進黑洞的高度 */
+    90%  { transform: translateY(160px) rotate(180deg); opacity: 1; } /* 停留展示一下 */
+    100% { transform: translateY(160px) rotate(180deg); opacity: 0; }
+}
+
+/* 放大顯示並打開的扭蛋 */
+.zoom-ball-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 60px auto;
+    opacity: 0;
+    transform: scale(0.1);
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.zoom-ball-container.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* 扭蛋上半部 */
+.zoom-ball-top {
+    position: absolute;
+    width: 200px;
+    height: 100px;
+    border-radius: 100px 100px 0 0;
+    top: 0;
+    transition: all 0.6s ease-in-out;
+    z-index: 2;
+    box-shadow: inset -10px -5px 15px rgba(0,0,0,0.1);
+}
+
+/* 扭蛋下半部 */
+.zoom-ball-bottom {
+    position: absolute;
+    width: 200px;
+    height: 100px;
+    background: #fff;
+    border-radius: 0 0 100px 100px;
+    bottom: 0;
+    border-top: 4px solid #ccc;
+    transition: all 0.6s ease-in-out;
+    z-index: 1;
+    box-shadow: inset -10px -10px 15px rgba(0,0,0,0.1);
+}
+
+/* 打開的動畫：上下半部分開飛走 */
+.zoom-ball-container.open .zoom-ball-top {
+    transform: translateY(-80px) rotate(-15deg);
+    opacity: 0;
+}
+
+.zoom-ball-container.open .zoom-ball-bottom {
+    transform: translateY(80px) rotate(15deg);
+    opacity: 0;
+}
+
+/* 裡面的驚喜特效 */
+.gacha-result-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 60px;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.6s 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 0;
+}
+
+.zoom-ball-container.open .gacha-result-icon {
+    transform: translate(-50%, -50%) scale(1.5);
 }

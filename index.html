@@ -1,84 +1,74 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
-
 <head>
-    <!-- 設定網頁使用 UTF-8 編碼，避免中文亂碼 -->
     <meta charset="UTF-8">
-
-    <!-- 讓網頁在手機、平板上可以自動縮放 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- 瀏覽器分頁上顯示的名稱 -->
     <title>中央今天吃什麼？</title>
-
-    <!-- 引入 style.css，負責網頁外觀 -->
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <!-- 網頁的大標題 -->
-    <h1 id="title">🍔 中央今天吃什麼？</h1>
+    <button id="togglePanelBtn">⚙️ 篩選餐廳</button>
 
-    <!-- 網頁說明文字 -->
+    <h1 id="title">🍔 中央今天吃什麼？</h1>
     <p>今天不知道要吃什麼嗎？讓我幫你決定！</p>
 
-    <!-- 按鈕
-            id="pickButton" 是按鈕的名字
-            JavaScript 之後會透過這個 id 找到按鈕 -->
+    <!-- 抽籤方式獨立放在按鈕上方 -->
+    <div id="drawMethodSelector" style="margin-bottom: 20px;">
+        <label style="margin-right: 15px; cursor: pointer;"><input type="radio" name="drawMethod" value="basic" checked> 🎲 基礎秒抽</label>
+        <label style="margin-right: 15px; cursor: pointer;"><input type="radio" name="drawMethod" value="roulette"> 🎡 幸運轉盤</label>
+        <label style="cursor: pointer;"><input type="radio" name="drawMethod" value="gacha"> 🎁 驚喜扭蛋</label>
+    </div>
+
     <button id="pickButton">開始抽！</button>
 
     <div class="container">
-
-        <!-- 左側 -->
-        <div class="leftPanel">
-
-        </div>
-
-        <!-- 中間 -->
+        <div class="leftPanel"></div>
         <div class="mainContent">
-
             <div id="result">
                 還沒有抽餐廳
             </div>
-
         </div>
 
-        <!-- 右側 -->
         <div class="restaurantPanel">
-
+            <button id="closePanelBtn">❌ 關閉篩選</button>
             <h3>🍴 選擇餐廳</h3>
+            
+            <!-- 新增：地點選擇器 -->
+            <div id="locationSelector" style="margin-bottom: 15px; text-align: left; padding-left: 10px;">
+                <label style="font-weight: bold; display: block; margin-bottom: 5px;">📍 選擇地點</label>
+                <select id="locationSelect" style="width: 90%; padding: 8px; border-radius: 5px; border: 1px solid #ccc; font-size: 16px;">
+                    <option value="all">全地點</option>
+                    <option value="後門">後門</option>
+                    <option value="宵夜街">宵夜街</option>
+                    <option value="松果餐廳">松果餐廳</option>
+                    <option value="女14舍">女14舍</option>
+                    <option value="第九餐廳">第九餐廳</option>
+                    <option value="松苑餐廳">松苑餐廳</option>
+                    <option value="小木屋鬆餅">小木屋鬆餅</option>
+                </select>
+            </div>
 
+            <!-- 時段選擇器 -->
+            <div id="timeSlotSelector" style="margin-bottom: 15px; text-align: left; padding-left: 10px;">
+                <label style="font-weight: bold; display: block; margin-bottom: 5px;">⏰ 選擇時段</label>
+                <label style="margin-right: 10px;"><input type="radio" name="timeSlot" value="none" checked> 全時段</label>
+                <label style="margin-right: 10px;"><input type="radio" name="timeSlot" value="lunch"> 午餐</label>
+                <label><input type="radio" name="timeSlot" value="dinner"> 晚餐</label>
+            </div>
 
-            <button id="selectAll">
-                全部選取
-            </button>
+            <hr style="border: 0; border-top: 1px solid #ddd; margin: 15px 0;">
 
-
-            <button id="unselectAll">
-                全部取消
-            </button>
-
-
+            <button id="selectAll">全部選取</button>
+            <button id="unselectAll">全部取消</button>
             <div id="restaurantCheckboxes"></div>
-
         </div>
-
     </div>
 
-    <!-- ==============================
-        Lightbox 圖片放大視窗
-        平常隱藏，點圖片才出現
-        ============================== -->
-
     <div id="lightbox">
-        <!-- 大圖片 -->
         <img id="lightboxImage">
     </div>
 
-    <!-- 引入 JavaScript -->
     <script src="script.js"></script>
-
 </body>
-
 </html>
