@@ -438,10 +438,11 @@ body {
     box-shadow: inset -5px -5px 10px rgba(0,0,0,0.2);
 }
 
-.ball-1 { background: linear-gradient(to bottom, #ff4757 50%, #fff 50%); top: 150px; left: 40px; transform: rotate(15deg); }
-.ball-2 { background: linear-gradient(to bottom, #1e90ff 50%, #fff 50%); top: 130px; left: 110px; transform: rotate(-25deg); }
-.ball-3 { background: linear-gradient(to bottom, #2ed573 50%, #fff 50%); top: 90px; left: 60px; transform: rotate(45deg); }
-.ball-4 { background: linear-gradient(to bottom, #ffa502 50%, #fff 50%); top: 160px; left: 140px; transform: rotate(-10deg); }
+/* 四顆球的獨立位置與顏色 (已將藍色橘色分開) */
+.ball-1 { background: linear-gradient(to bottom, #ff4757 50%, #fff 50%); top: 140px; left: 30px; transform: rotate(15deg); z-index: 1; }
+.ball-2 { background: linear-gradient(to bottom, #1e90ff 50%, #fff 50%); top: 80px; left: 90px; transform: rotate(-25deg); z-index: 2; }
+.ball-3 { background: linear-gradient(to bottom, #2ed573 50%, #fff 50%); top: 120px; left: 140px; transform: rotate(45deg); z-index: 1; }
+.ball-4 { background: linear-gradient(to bottom, #ffa502 50%, #fff 50%); top: 165px; left: 95px; transform: rotate(-10deg); z-index: 3; }
 
 /* 掉出來的扭蛋 */
 .dropped-ball {
@@ -535,3 +536,38 @@ body {
 .zoom-ball-container.open .gacha-result-icon {
     transform: translate(-50%, -50%) scale(1.5);
 }
+
+/* ==============================
+   扭蛋攪拌動畫
+   ============================== */
+@keyframes ball-mix-1 {
+    0%   { margin-top: 0px; margin-left: 0px; }
+    25%  { margin-top: -20px; margin-left: -15px; }
+    50%  { margin-top: 15px; margin-left: -20px; }
+    75%  { margin-top: 20px; margin-left: 15px; }
+    100% { margin-top: 0px; margin-left: 0px; }
+}
+
+/* 軌跡 2：右上左下彈跳 */
+@keyframes ball-mix-2 {
+    0%   { margin-top: 0px; margin-left: 0px; }
+    25%  { margin-top: 15px; margin-left: 20px; }
+    50%  { margin-top: -25px; margin-left: 10px; }
+    75%  { margin-top: -10px; margin-left: -20px; }
+    100% { margin-top: 0px; margin-left: 0px; }
+}
+
+/* 軌跡 3：偏重上下劇烈彈跳 */
+@keyframes ball-mix-3 {
+    0%   { margin-top: 0px; margin-left: 0px; }
+    33%  { margin-top: -30px; margin-left: 5px; }
+    66%  { margin-top: 25px; margin-left: -5px; }
+    100% { margin-top: 0px; margin-left: 0px; }
+}
+
+/* 分別套用不同的軌跡、速度，甚至反轉方向 (reverse) */
+.ball-1.mixing { animation: ball-mix-1 0.25s infinite; }
+.ball-2.mixing { animation: ball-mix-2 0.35s infinite; }
+.ball-3.mixing { animation: ball-mix-3 0.28s infinite; }
+/* 讓橘色球借用軌跡 1，但是倒著跑，確保絕對不會跟別的球同步！ */
+.ball-4.mixing { animation: ball-mix-1 0.32s infinite reverse; }

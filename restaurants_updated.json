@@ -103,7 +103,7 @@
     },
 
     {   "id":3,
-        "name": "滿分小舖（Straight A）",
+        "name": "滿分小舖(Straight A)",
         "type": "漢堡/潛艇堡",
         "restaurantImage": "sign/滿分小舖.png",
         "typeIcon": "Icon/漢堡/潛艇堡.svg",
@@ -333,9 +333,9 @@
 
     {   "id":7,
         "name": "雙饗丼-桃園中央店",
-        "type": "丼飯",
+        "type": "飯",
         "restaurantImage": "sign/雙饗丼-桃園中央店.png",
-        "typeIcon": "Icon/丼飯.svg",
+        "typeIcon": "Icon/飯.svg",
         "place": "後門",
         "openingHours": {
             "Monday": [
@@ -567,11 +567,12 @@
         ],
         "map": "https://pse.is/9h4hj6"
     },
-    {   "id":10,
+
+    {   "id":11,
         "name": "太極飯糰",
-        "type": "飯糰",
+        "type": "飯",
         "restaurantImage": "sign/太極飯糰.png",
-        "typeIcon": "Icon/飯糰.svg",
+        "typeIcon": "Icon/飯.svg",
         "place": "後門",
         "openingHours": {
             "Monday": [
@@ -612,7 +613,8 @@
         ],
         "map": "https://pse.is/9h4hwz"
     },
-    {
+
+    {   "id":12,
         "name": "太極飯糰晚上的簡餐",
         "type": "簡餐",
         "restaurantImage": "sign/太極飯糰晚上的簡餐.png",
@@ -632,7 +634,8 @@
         ],
         "map": ""
     },
-    {
+
+    {   "id":13,
         "name": "自己煮健康鍋物",
         "type": "火鍋",
         "restaurantImage": "sign/自己煮健康鍋物.png",
@@ -652,7 +655,8 @@
         ],
         "map": "https://pse.is/9h4jfw"
     },
-    {
+
+    {   "id":14,
         "name": "米豆簡餐",
         "type": "簡餐",
         "restaurantImage": "sign/米豆簡餐.png",
@@ -735,7 +739,8 @@
         ],
         "map": "https://pse.is/9h4k5d"
     },
-    {
+
+    {   "id":15,
         "name": "大嗑中央大學(蔬菜蛋餅專賣店)",
         "type": "蛋餅",
         "restaurantImage": "sign/大嗑中央大學.png",
@@ -790,7 +795,8 @@
         ],
         "map": "https://pse.is/9h4kb5"
     },
-    {
+
+    {   "id":16,
         "name": "廚窗 Kitchen Bliss",
         "type": "簡餐",
         "restaurantImage": "sign/廚窗.png",
@@ -864,7 +870,8 @@
         ],
         "map": "https://pse.is/9h4kgy"
     },
-    {
+
+    {   "id":17,
         "name": "紅樓牛肉麵",
         "type": "麵食",
         "restaurantImage": "sign/紅樓牛肉麵.png",
@@ -938,7 +945,8 @@
         ],
         "map": "https://pse.is/9h4kqz"
     },
-    {
+
+    {   "id":18,
         "name": "大中央厚切牛排",
         "type": "牛排",
         "restaurantImage": "sign/大中央厚切牛排.png",
@@ -983,7 +991,8 @@
         ],
         "map": "https://pse.is/9h4kv7"
     },
-    {
+
+    {   "id":19,
         "name": "迷路義麵屋",
         "type": "義大利麵",
         "restaurantImage": "sign/迷路義麵屋.png",
@@ -1057,7 +1066,8 @@
         ],
         "map": "https://pse.is/9h4l6p"
     },
-    {
+
+    {   "id":20,
         "name": "飽咖咖",
         "type": "咖哩",
         "restaurantImage": "sign/飽咖咖.png",
@@ -1113,7 +1123,8 @@
         ],
         "map": "https://pse.is/9h4lcp"
     },
-    {
+
+    {   "id":21,
         "name": "川川滷味",
         "type": "滷味",
         "restaurantImage": "sign/川川滷味.png",
@@ -1168,11 +1179,12 @@
         ],
         "map": ""
     },
-    {
+
+    {   "id":22,
         "name": "花路꽃길石鍋拌飯專賣",
-        "type": "石鍋拌飯",
+        "type": "韓式",
         "restaurantImage": "sign/花路꽃길石鍋拌飯專賣.png",
-        "typeIcon": "Icon/石鍋拌飯.svg",
+        "typeIcon": "Icon/韓式.svg",
         "place": "後門",
         "openingHours": {
             "Monday": [
@@ -1242,7 +1254,8 @@
         ],
         "map": "https://pse.is/9h4lqc"
     },
-    {
+
+    {   "id":23,
         "name": "麥克小姐",
         "type": "漢堡/潛艇堡",
         "restaurantImage": "sign/麥克小姐.png",
@@ -1316,7 +1329,8 @@
         ],
         "map": "https://pse.is/9h4lva"
     },
-    {
+
+    {   "id":24,
         "name": "新福（紅油抄手）",
         "type": "麵食",
         "restaurantImage": "sign/新福.png",
@@ -1381,7 +1395,8 @@
         ],
         "map": "https://pse.is/9h4m2q"
     },
-    {
+
+    {   "id":25,
         "name": "萊客堡早午餐",
         "type": "早午餐",
         "restaurantImage": "sign/萊客堡早午餐.png",
@@ -1431,7 +1446,8 @@
         ],
         "map": "https://pse.is/9h4m7y"
     },
-    {
+
+    {   "id":26,
         "name": "白鬍子牛排 中央大學店",
         "type": "牛排",
         "restaurantImage": "sign/白鬍子牛排.png",
@@ -1506,7 +1522,8 @@
         ],
         "map": "https://pse.is/9h4mch"
     },
-    {
+
+    {   "id":27,
         "name": "熊屋拉麵",
         "type": "麵食",
         "restaurantImage": "sign/熊屋拉麵.png",
@@ -1567,7 +1584,8 @@
         ],
         "map": "https://pse.is/9h4mlw"
     },
-    {
+
+    {   "id":28,
         "name": "惟客美而美",
         "type": "早午餐",
         "restaurantImage": "sign/惟客美而美.png",
@@ -1617,7 +1635,8 @@
         ],
         "map": "https://pse.is/9h4mse"
     },
-    {
+
+    {   "id":29,
         "name": "萊姆斯早午餐",
         "type": "早午餐",
         "restaurantImage": "sign/萊姆斯早午餐.png",
@@ -1637,7 +1656,8 @@
         ],
         "map": "https://pse.is/9h4mx3"
     },
-    {
+
+    {   "id":30,
         "name": "食間",
         "type": "泰式",
         "restaurantImage": "sign/食間.png",
@@ -1702,7 +1722,8 @@
         ],
         "map": "https://pse.is/9h4nad"
     },
-    {
+
+    {   "id":31,
         "name": "健康鹹水雞",
         "type": "鹹水雞",
         "restaurantImage": "sign/健康鹹水雞.png",
@@ -1747,7 +1768,8 @@
         ],
         "map": "https://pse.is/9h4njk"
     },
-    {
+
+    {   "id":32,
         "name": "哈堡堡輕食早午餐中大直營店",
         "type": "早午餐",
         "restaurantImage": "sign/哈堡堡輕食早午餐中大直營店.png",
@@ -1797,7 +1819,8 @@
         ],
         "map": "https://pse.is/9h4npk"
     },
-    {
+
+    {   "id":33,
         "name": "八方雲集-中壢中央店",
         "type": "水餃",
         "restaurantImage": "sign/八方雲集-中壢中央店.png",
@@ -1847,7 +1870,8 @@
         ],
         "map": "https://pse.is/9h4nvk"
     },
-    {
+
+    {   "id":34,
         "name": "全家便利商店 中壢龍凱店",
         "type": "便利商店",
         "restaurantImage": "sign/全家便利商店.png",
@@ -1902,7 +1926,8 @@
         ],
         "map": "https://pse.is/9h4p3f"
     },
-    {
+
+    {   "id":35,
         "name": "阿米玲食堂-日式豬排專賣-",
         "type": "豬排",
         "restaurantImage": "sign/阿米玲食堂-日式豬排專賣-.png",
@@ -1967,7 +1992,8 @@
         ],
         "map": "https://pse.is/9h4p8c"
     },
-    {
+
+    {   "id":36,
         "name": "尚臻鍋燒",
         "type": "麵食",
         "restaurantImage": "sign/尚臻鍋燒.png",
@@ -2022,7 +2048,8 @@
         ],
         "map": "https://pse.is/9h4pdl"
     },
-    {
+
+    {   "id":37,
         "name": "食胖烤肉飯",
         "type": "簡餐",
         "restaurantImage": "sign/食胖烤肉飯.png",
@@ -2105,7 +2132,8 @@
         ],
         "map": "https://pse.is/9h4pk2"
     },
-    {
+
+    {   "id":38,
         "name": "樂活堡",
         "type": "早午餐",
         "restaurantImage": "sign/樂活堡.png",
@@ -2155,7 +2183,8 @@
         ],
         "map": "https://pse.is/9h4slx"
     },
-    {
+
+    {   "id":39,
         "name": "歐姆萊斯",
         "type": "咖哩",
         "restaurantImage": "sign/歐姆萊斯.png",
@@ -2229,7 +2258,8 @@
         ],
         "map": "https://pse.is/9h4ssv"
     },
-    {
+
+    {   "id":40,
         "name": "達啵廚房 Double 2 Kitchen",
         "type": "漢堡/潛艇堡",
         "restaurantImage": "sign/達啵廚房.png",
@@ -2299,7 +2329,8 @@
         ],
         "map": "https://pse.is/9h4sx5"
     },
-    {
+
+    {   "id":41,
         "name": "家香美食屋",
         "type": "麵食",
         "restaurantImage": "sign/家香美食屋.png",
@@ -2364,7 +2395,8 @@
         ],
         "map": "https://pse.is/9h4t3q"
     },
-    {
+
+    {   "id":42,
         "name": "香米便當‧自助餐",
         "type": "自助餐",
         "restaurantImage": "sign/香米便當‧自助餐.png",
@@ -2438,7 +2470,8 @@
         ],
         "map": "https://pse.is/9h4t77"
     },
-    {
+
+    {   "id":43,
         "name": "Daddy's美式餐廳",
         "type": "漢堡/潛艇堡",
         "restaurantImage": "sign/Daddy's美式餐廳.png",
@@ -2503,11 +2536,12 @@
         ],
         "map": "https://pse.is/9h4tbu"
     },
-    {
+
+    {   "id":44,
         "name": "八哥重慶酸辣粉 中央大學店",
-        "type": "酸辣粉",
-        "restaurantImage": "sign/八哥重慶酸辣粉.png",
-        "typeIcon": "Icon/酸辣粉.svg",
+        "type": "麵食",
+        "restaurantImage": "sign/麵食.png",
+        "typeIcon": "Icon/麵食.svg",
         "place": "後門",
         "openingHours": {
             "Monday": [
@@ -2577,7 +2611,8 @@
         ],
         "map": "https://pse.is/9h4tfw"
     },
-    {
+
+    {   "id":45,
         "name": "街角216",
         "type": "漢堡/潛艇堡",
         "restaurantImage": "sign/街角216.png",
@@ -2642,7 +2677,8 @@
         ],
         "map": "https://pse.is/9h4tm2"
     },
-    {
+
+    {   "id":46,
         "name": "竹香快餐",
         "type": "自助餐",
         "restaurantImage": "sign/竹香快餐.png",
@@ -2717,7 +2753,8 @@
         ],
         "map": "https://pse.is/9h4try"
     },
-    {
+
+    {   "id":47,
         "name": "No.17 White House",
         "type": "義大利麵",
         "restaurantImage": "sign/No.17.png",
@@ -2755,7 +2792,8 @@
         ],
         "map": "https://pse.is/9h4tzq"
     },
-    {
+
+    {   "id":48,
         "name": "7-11 中大松果店",
         "type": "便利商店",
         "restaurantImage": "sign/7-11.png",
@@ -2775,7 +2813,8 @@
         ],
         "map": ""
     },
-    {
+
+    {   "id":49,
         "name": "沐早午餐",
         "type": "早午餐",
         "restaurantImage": "sign/沐早午餐.png",
@@ -2795,7 +2834,8 @@
         ],
         "map": ""
     },
-    {
+
+    {   "id":50,
         "name": "太春小館",
         "type": "麵食",
         "restaurantImage": "sign/太春小館.png",
@@ -2815,11 +2855,12 @@
         ],
         "map": ""
     },
-    {
+
+    {   "id":51,
         "name": "Oh MO韓式料理",
-        "type": "韓式料理",
+        "type": "韓式",
         "restaurantImage": "sign/Oh.png",
-        "typeIcon": "Icon/韓式料理.svg",
+        "typeIcon": "Icon/韓式.svg",
         "place": "松果餐廳",
         "openingHours": {
             "Monday": [],
@@ -2835,11 +2876,12 @@
         ],
         "map": ""
     },
-    {
+
+    {   "id":52,
         "name": "卷卷食韓式海苔飯卷",
-        "type": "韓式料理",
+        "type": "韓式",
         "restaurantImage": "sign/卷卷食韓式海苔飯卷.png",
-        "typeIcon": "Icon/韓式料理.svg",
+        "typeIcon": "Icon/韓式.svg",
         "place": "松果餐廳",
         "openingHours": {
             "Monday": [],
@@ -2855,7 +2897,8 @@
         ],
         "map": ""
     },
-    {
+
+    {   "id":53,
         "name": "Comebuy",
         "type": "飲料",
         "restaurantImage": "sign/Comebuy.png",
@@ -2875,7 +2918,8 @@
         ],
         "map": ""
     },
-    {
+
+    {   "id":54,
         "name": "7-11 X-Store/中大智能店(24小時無人商店)",
         "type": "便利商店",
         "restaurantImage": "sign/7-11.png",
@@ -2930,7 +2974,8 @@
         ],
         "map": ""
     },
-    {
+
+    {   "id":55,
         "name": "蛋餅酥酥",
         "type": "早午餐",
         "restaurantImage": "sign/蛋餅酥酥.png",
@@ -2980,7 +3025,8 @@
         ],
         "map": ""
     },
-    {
+
+    {   "id":56,
         "name": "直火盒子",
         "type": "健康餐盒",
         "restaurantImage": "sign/直火盒子.png",
@@ -3045,7 +3091,8 @@
         ],
         "map": ""
     },
-    {
+
+    {   "id":57,
         "name": "小木屋鬆餅",
         "type": "鬆餅",
         "restaurantImage": "sign/小木屋鬆餅.png",
@@ -3065,7 +3112,8 @@
         ],
         "map": ""
     },
-    {
+
+    {   "id":58,
         "name": "7-11 男9舍",
         "type": "便利商店",
         "restaurantImage": "sign/7-11.png",
@@ -3085,7 +3133,8 @@
         ],
         "map": ""
     },
-    {
+
+    {   "id":59,
         "name": "7-11 中大松苑店",
         "type": "便利商店",
         "restaurantImage": "sign/7-11.png",
@@ -3105,7 +3154,8 @@
         ],
         "map": ""
     },
-    {
+
+    {   "id":60,
         "name": "宵夜街口湯包",
         "type": "湯包",
         "restaurantImage": "sign/宵夜街口湯包.png",
@@ -3150,7 +3200,8 @@
         ],
         "map": "https://pse.is/9h54pe"
     },
-    {
+
+    {   "id":61,
         "name": "豪味堡",
         "type": "早午餐",
         "restaurantImage": "sign/豪味堡.png",
@@ -3205,7 +3256,8 @@
         ],
         "map": ""
     },
-    {
+
+    {   "id":62,
         "name": "比3樂創意料理 Peace&love（麻糬豆花）中大店",
         "type": "甜品",
         "restaurantImage": "sign/比3樂創意料理.png",
@@ -3230,7 +3282,8 @@
         ],
         "map": "https://pse.is/9h559t"
     },
-    {
+
+    {   "id":63,
         "name": "一品鍋",
         "type": "火鍋",
         "restaurantImage": "sign/一品鍋.png",
@@ -3293,7 +3346,8 @@
         ],
         "map": "https://pse.is/9h55cb"
     },
-    {
+
+    {   "id":64,
         "name": "雞不可失",
         "type": "雞肉飯",
         "restaurantImage": "sign/雞不可失.png",
@@ -3313,7 +3367,8 @@
         ],
         "map": ""
     },
-    {
+
+    {   "id":65,
         "name": "田麵匠",
         "type": "麵食",
         "restaurantImage": "sign/田麵匠.png",
@@ -3333,7 +3388,8 @@
         ],
         "map": ""
     },
-    {
+
+    {   "id":66,
         "name": "小惡魔茶飲(Pretty Devil)",
         "type": "飲料",
         "restaurantImage": "sign/小惡魔茶飲.png",
@@ -3388,6 +3444,7 @@
         ],
         "map": "https://pse.is/9h55wv"
     },
+    
     {
         "name": "炸彈蔥油餅",
         "type": "蔥油餅",

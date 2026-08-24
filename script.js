@@ -65,14 +65,14 @@ function getFilteredRestaurants() {
 }
 
 // ==============================
-// 畫出圓形轉盤
+// 畫出圓形轉盤 (修改為接收字串陣列)
 // ==============================
-function drawWheel(filteredList) {
+function drawWheel(labels) {
     const canvas = document.getElementById("wheelCanvas");
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     const radius = canvas.width / 2;
-    const totalItems = filteredList.length;
+    const totalItems = labels.length;
     
     ctx.clearRect(0, 0, canvas.width, canvas.height); 
     if (totalItems === 0) return;
@@ -98,7 +98,7 @@ function drawWheel(filteredList) {
         ctx.textAlign = "right";
         ctx.fillStyle = "#fff";
         ctx.font = "bold 20px Arial";
-        let text = filteredList[i].name;
+        let text = labels[i];
         if(text.length > 10) text = text.substring(0, 10) + '...';
         ctx.fillText(text, radius - 30, 7); 
         ctx.restore();
@@ -106,7 +106,7 @@ function drawWheel(filteredList) {
 }
 
 // ==============================
-// 即時更新預覽畫面 (安靜狀態，無動畫)
+// 即時更新預覽畫面
 // ==============================
 function updatePreview() {
     if (isSpinning) return; 
@@ -121,16 +121,18 @@ function updatePreview() {
     }
 
     if (drawMethod === "roulette") {
+        // 轉盤模式預覽：顯示「種類」的大轉盤
+        const uniqueCategories = [...new Set(filtered.map(r => r.type))];
         result.innerHTML = `
             <div class="wheel-container">
                 <div class="wheel-pointer"></div>
                 <canvas id="wheelCanvas" width="500" height="500" class="wheel-canvas"></canvas>
             </div>
-            <p style="font-size:20px; font-weight:bold; margin-top:15px; color: #ff9800;">點擊「開始抽！」來轉動幸運轉盤吧！</p>
+            <p style="font-size:20px; font-weight:bold; margin-top:15px; color: #ff9800;">點擊「開始抽！」來啟動兩階段轉盤！</p>
         `;
-        drawWheel(filtered);
+        drawWheel(uniqueCategories);
+
     } else if (drawMethod === "gacha") {
-        // 預覽狀態下，絕對不會有 .dropped-ball，也不會有動畫
         result.innerHTML = `
             <div class="gacha-machine-container" style="transform: scale(0.85); margin-top: 0;">
                 <div class="gacha-globe">
@@ -327,6 +329,8 @@ document.getElementById("pickButton").addEventListener("click", function () {
     isSpinning = true; 
     
     const drawMethod = document.querySelector('input[name="drawMethod"]:checked').value;
+    
+    // 一開始先決定好最終贏家，後面的兩段轉盤都只是配合演出
     const randomIndex = Math.floor(Math.random() * filteredRestaurants.length);
     const randomRestaurant = filteredRestaurants[randomIndex];
 
@@ -369,36 +373,79 @@ document.getElementById("pickButton").addEventListener("click", function () {
         isSpinning = false;
 
     } else if (drawMethod === "roulette") {
-        let canvas = document.getElementById("wheelCanvas");
-        if (!canvas) {
-            updatePreview();
-            canvas = document.getElementById("wheelCanvas");
-        }
         
-        const totalItems = filteredRestaurants.length;
-        const sliceDeg = 360 / totalItems;
-        const randomOffset = (Math.random() * 0.8 - 0.4) * sliceDeg; 
-        const finalRotation = (360 * 6) - (randomIndex * sliceDeg + sliceDeg / 2 + randomOffset);
+        // --- 兩階段轉盤邏輯 ---
+        const uniqueCategories = [...new Set(filteredRestaurants.map(r => r.type))];
+        const winningCategory = randomRestaurant.type;
+        const catIndex = uniqueCategories.indexOf(winningCategory);
 
-        const statusP = canvas.parentElement.parentElement.querySelector("p");
-        if(statusP) statusP.innerText = "命運轉動中... 🎡";
+        // 階段一：準備種類轉盤
+        result.innerHTML = `
+            <div class="wheel-container">
+                <div class="wheel-pointer"></div>
+                <canvas id="wheelCanvas" width="500" height="500" class="wheel-canvas"></canvas>
+            </div>
+            <p style="font-size:20px; font-weight:bold; margin-top:15px; color: #ff9800;" id="wheelStatus">第一階段：抽出種類中... 🎡</p>
+        `;
+
+        drawWheel(uniqueCategories);
+        const canvas1 = document.getElementById("wheelCanvas");
+
+        const sliceDeg1 = 360 / uniqueCategories.length;
+        const randomOffset1 = (Math.random() * 0.8 - 0.4) * sliceDeg1; 
+        const finalRotation1 = (360 * 6) - (catIndex * sliceDeg1 + sliceDeg1 / 2 + randomOffset1);
 
         setTimeout(() => {
-            canvas.style.transform = `rotate(${finalRotation}deg)`;
+            canvas1.style.transform = `rotate(${finalRotation1}deg)`;
         }, 50);
 
+        // 等待第一段動畫轉完 (4.2秒)
         setTimeout(() => {
-            result.innerHTML = finalResultHtml;
-            isSpinning = false; 
+            const statusP = document.getElementById("wheelStatus");
+            if(statusP) statusP.innerHTML = `抽中「<span style="color:#e74c3c; font-size:24px;">${winningCategory}</span>」！準備抽出店家... ✨`;
+
+            // 停頓 1.5 秒讓使用者看清楚抽中了哪個種類
+            setTimeout(() => {
+                
+                // 階段二：過濾出該種類底下的所有餐廳，並準備店家轉盤
+                const restaurantsInCat = filteredRestaurants.filter(r => r.type === winningCategory);
+                const restIndex = restaurantsInCat.indexOf(randomRestaurant);
+
+                // 重新塞入 HTML 結構以重置 Canvas 轉動角度
+                result.innerHTML = `
+                    <div class="wheel-container">
+                        <div class="wheel-pointer"></div>
+                        <canvas id="wheelCanvas" width="500" height="500" class="wheel-canvas"></canvas>
+                    </div>
+                    <p style="font-size:20px; font-weight:bold; margin-top:15px; color: #ff9800;" id="wheelStatus2">第二階段：抽出店家！ 🎯</p>
+                `;
+
+                drawWheel(restaurantsInCat.map(r => r.name));
+                const canvas2 = document.getElementById("wheelCanvas");
+
+                const sliceDeg2 = 360 / restaurantsInCat.length;
+                const randomOffset2 = (Math.random() * 0.8 - 0.4) * sliceDeg2;
+                const finalRotation2 = (360 * 6) - (restIndex * sliceDeg2 + sliceDeg2 / 2 + randomOffset2);
+
+                setTimeout(() => {
+                    canvas2.style.transform = `rotate(${finalRotation2}deg)`;
+                }, 50);
+
+                // 等待第二段動畫轉完 (4.2秒)，顯示最終結果
+                setTimeout(() => {
+                    result.innerHTML = finalResultHtml;
+                    isSpinning = false; 
+                }, 4200);
+
+            }, 1500);
+
         }, 4200);
 
     } else if (drawMethod === "gacha") {
         
-        // 準備多種扭蛋顏色
         const gachaColors = ["#ff4757", "#1e90ff", "#2ed573", "#ffa502", "#9b59b6", "#e84393"];
         const randomColor = gachaColors[Math.floor(Math.random() * gachaColors.length)];
 
-        // 開始抽籤，畫面換成「準備掉落狀態」
         result.innerHTML = `
             <div class="gacha-machine-container" id="gachaMachine">
                 <div class="gacha-globe">
@@ -411,28 +458,29 @@ document.getElementById("pickButton").addEventListener("click", function () {
                     <div class="gacha-knob" id="gachaKnob"></div>
                     <div class="gacha-chute"></div>
                 </div>
-                <!-- 修正：一定要放在這裡！在 globe 和 base 的外面，才不會被隱藏 -->
                 <div class="dropped-ball" id="droppedBall" style="background: linear-gradient(to bottom, ${randomColor} 50%, #fff 50%);"></div> 
             </div>
-            <p style="font-size:20px; font-weight:bold; color: #ff9800; margin-top:20px;" id="gachaStatus">轉動旋鈕中...</p>
+            <p style="font-size:20px; font-weight:bold; color: #ff9800; margin-top:20px;" id="gachaStatus">扭蛋瘋狂攪拌中... 🌀</p>
         `;
 
         const knob = document.getElementById("gachaKnob");
         const droppedBall = document.getElementById("droppedBall");
         const statusP = document.getElementById("gachaStatus");
+        const innerBalls = document.querySelectorAll(".gacha-ball");
 
-        // 轉動旋鈕
+        innerBalls.forEach(ball => ball.classList.add("mixing"));
+
         setTimeout(() => {
+            innerBalls.forEach(ball => ball.classList.remove("mixing")); 
+            statusP.innerText = "轉動旋鈕中... ⚙️";
             knob.classList.add("turn");
-        }, 100);
+        }, 1000);
 
-        // 扭蛋俐落掉落 (無彈跳)
         setTimeout(() => {
-            statusP.innerText = "扭蛋掉出來了！";
+            statusP.innerText = "扭蛋掉出來了！ 🎁";
             droppedBall.classList.add("drop");
-        }, 600);
+        }, 1500);
 
-        // 切換到放大扭蛋畫面
         setTimeout(() => {
             result.innerHTML = `
                 <div class="zoom-ball-container" id="zoomBall">
@@ -451,16 +499,16 @@ document.getElementById("pickButton").addEventListener("click", function () {
             }, 50);
 
             setTimeout(() => {
-                statusP2.innerText = "登愣！";
+                statusP2.innerText = "登愣！ ✨";
                 zoomBall.classList.add("open");
             }, 800);
 
             setTimeout(() => {
                 result.innerHTML = finalResultHtml;
-                isSpinning = false; // 解除鎖定
+                isSpinning = false; 
             }, 2000);
 
-        }, 1500); 
+        }, 2400); 
     }
 });
 
