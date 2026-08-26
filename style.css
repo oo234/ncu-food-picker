@@ -229,11 +229,14 @@ body {
 
 /* 類別圖案 */
 .typeIcon {
-    width:25px;
-    height:25px;
-    object-fit:contain;
-    position:relative;
-    top:5px;
+    font-size: 20px; 
+    margin-left: 0px;
+    
+    /* 確保這兩行有加進去，用來微調高度 */
+    position: relative;
+    top: -1px; /* 負數代表往上移，覺得不夠可以改 -4px 或 -5px */
+    
+    /* 注意：一定要把原本的 vertical-align: middle; 拿掉，以免互相干擾 */
 }
 
 .categoryTitle{

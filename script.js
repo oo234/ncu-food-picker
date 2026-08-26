@@ -5,13 +5,24 @@ let categoryBoxes = [];
 let isSpinning = false; // 紀錄目前是否正在播放動畫，防止亂點出錯
 
 const categoryIcon = {
-    "水餃": "Icon/水餃.svg",
+    "水餃/湯包": "Icon/水餃.svg",
     "早午餐": "Icon/早午餐.svg",
-    "定食": "Icon/定食.svg",
-    "泰式": "Icon/泰式.svg",
+    "便利商店": "Icon/便利商店.svg",
     "飯": "Icon/飯.svg",
     "義大利麵": "Icon/義大利麵.svg",
-    "韓式": "Icon/韓式.svg"
+    "漢堡/潛艇堡": "Icon/漢堡.svg",
+    "麵食": "Icon/麵食.svg",
+    "飲料": "Icon/飲料.svg",
+    "鹹水雞": "Icon/鹹水雞.svg",
+    "火鍋": "Icon/火鍋.svg",
+    "蛋餅": "Icon/蛋餅.svg",
+    "牛排": "Icon/牛排.svg",
+    "滷味/關東煮": "Icon/滷味關東煮.svg",
+    "自助餐": "Icon/自助餐.svg",
+    "鬆餅": "Icon/鬆餅.svg",
+    "甜食": "Icon/甜食.svg",
+    "炸物": "Icon/炸物.svg"
+    
 };
 
 // ==============================
@@ -346,7 +357,7 @@ document.getElementById("pickButton").addEventListener("click", function () {
         </h2>
         <p class="restaurantType">
             類型：${randomRestaurant.type}
-            <img src="${randomRestaurant.typeIcon}" class="typeIcon">
+            <span class="typeIcon">${randomRestaurant.typeIcon}</span>
         </p>
         <p>🕒 今日營業時間：</p>
         <p>

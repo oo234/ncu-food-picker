@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 36 36">
+<title>🐔: chicken (U+1F414) - emojiall.com</title>
+<style>svg{stroke:#edf2f6;animation:dashoffset 10s both infinite,fill-opacity 10s both infinite,stroke-opacity 10s both infinite;stroke-dasharray:500%;stroke-dashoffset:500%}@keyframes stroke-opacity{2%,25%{stroke-opacity:.75;stroke-width:2%}100%,75%{stroke-opacity:0;stroke-width:0}}@keyframes fill-opacity{10%,25%{fill-opacity:0}0%,100%,50%{fill-opacity:1}}@keyframes dashoffset{0%,2%{stroke-dashoffset:500%}100%{stroke-dashoffset:0%}}</style>
+<path fill="#E1E8ED" d="M20.143 32.215c0 1.183-.959 2.143-2.143 2.143s-2.143-.96-2.143-2.143c0-1.184.96-2.144 2.143-2.144s2.143.96 2.143 2.144z"/>
+<path fill="#E1E8ED" d="M27.643 15.643C27.643 10.317 23.324 6 18 6c-5.326 0-9.643 4.317-9.643 9.643 0 5.357-1.071 16.572-1.071 16.572 0 1.183.959 2.143 2.143 2.143 1.183 0 2.143-.96 2.143-2.143 0 1.183.96 2.143 2.143 2.143 1.183 0 2.142-.96 2.142-2.143h4.286c0 1.183.96 2.143 2.144 2.143 1.183 0 2.143-.96 2.143-2.143 0 1.183.959 2.143 2.143 2.143 1.184 0 2.143-.96 2.143-2.143-.002 0-1.073-11.215-1.073-16.572z"/>
+<path fill="#DD2E44" d="M20 3c0 2.209-1.447 6-2 6-.552 0-2-3.791-2-6s1.448-3 2-3c.553 0 2 .791 2 3zm-4.365 30c0-2.612 1.711-8 2.365-8 .653 0 2.365 5.388 2.365 8S18.652 36 18 36c-.654 0-2.365-.388-2.365-3z"/>
+<ellipse fill="#F4900C" cx="18" cy="22.5" rx="7" ry="4.5"/>
+<path fill="#FFAC33" d="M25 22.5c0 1.5-14 1.5-14 0s4.791-4.5 7-4.5 7 3 7 4.5z"/>
+<circle fill="#292F33" cx="11.5" cy="18.5" r="1.5"/>
+<circle fill="#292F33" cx="24.5" cy="18.5" r="1.5"/>
+<a xlink:href="https://www.emojiall.com/en/emoji/%F0%9F%90%94"><text x="36" y="34" font-size="1px" fill="#888da8" text-anchor="end" font-family="apple color emoji,segoe ui emoji,noto color emoji,android emoji,emojisymbols,emojione mozilla,twemoji mozilla,segoe ui symbol,Noto Color Emoji Compat,emoji,sans-serif">🐔</text></a>
+<a xlink:href="https://www.emojiall.com/"><text x="36" y="35" font-size="0.8px" fill="#888da8" text-anchor="end"><title>www.emojiall.com</title>emojiall.com</text></a>
+</svg>
