@@ -3742,78 +3742,49 @@
     },
 
     {   "id":66,
-        "name": "廣東腸粉",
-        "type": "水餃/湯包",
-        "restaurantImage": "sign/廣東腸粉.png",
-        "typeIcon": "🥟",
+        "name": "厚臉皮粉漿蛋餅",
+        "type": "蛋餅",
+        "restaurantImage": "sign/厚臉皮.png",
+        "typeIcon": "🌯",
         "place": "宵夜街",
         "openingHours": {
             "Monday": [
                 {
-                    "open": "11:30",
-                    "close": "13:30"
-                },
-                {
                     "open": "17:00",
-                    "close": "20:00"
+                    "close": "00:00"
                 }
             ],
             "Tuesday": [
                 {
-                    "open": "11:30",
-                    "close": "13:30"
-                },
-                {
                     "open": "17:00",
-                    "close": "20:00"
+                    "close": "00:00"
                 }
             ],
             "Wednesday": [
                 {
-                    "open": "11:30",
-                    "close": "13:30"
-                },
-                {
                     "open": "17:00",
-                    "close": "20:00"
+                    "close": "00:00"
                 }
             ],
             "Thursday": [
                 {
-                    "open": "11:30",
-                    "close": "13:30"
-                },
-                {
                     "open": "17:00",
-                    "close": "20:00"
+                    "close": "00:00"
                 }
             ],
             "Friday": [
                 {
-                    "open": "11:30",
-                    "close": "13:30"
-                },
-                {
                     "open": "17:00",
-                    "close": "20:00"
+                    "close": "00:00"
                 }
             ],
             "Saturday": [],
-            "Sunday": [
-                {
-                    "open": "11:30",
-                    "close": "13:30"
-                },
-                {
-                    "open": "17:00",
-                    "close": "20:00"
-                }
-            ]
+            "Sunday": []
         },
         "menuImages": [
-            "menu/廣東腸粉.png"
+            "menu/厚臉皮.png"
         ],
-        "map": "https://pse.is/9h56ep"
+        "map": "https://pse.is/9jcn5g"
     },
 
     {   "id":67,
@@ -3874,9 +3845,9 @@
 
     {   "id":68,
         "name": "388飯麵食堂(程饌食坊)",
-        "type": "簡餐",
-        "restaurantImage": "sign/388飯麵食堂.png",
-        "typeIcon": "Icon/簡餐.svg",
+        "type": "飯",
+        "restaurantImage": "sign/388.png",
+        "typeIcon": "🍚",
         "place": "宵夜街",
         "openingHours": {
             "Monday": [
@@ -3951,7 +3922,7 @@
             ]
         },
         "menuImages": [
-            "menu/388飯麵食堂/388飯麵食堂1.jpg"
+            "menu/388.png"
         ],
         "map": "https://pse.is/9h56rl"
     },
@@ -5580,9 +5551,9 @@
 
     {   "id":96,
         "name": "Sidewalk人行道蔬食",
-        "type": "飯",
-        "restaurantImage": "sign/Sidewalk人行道蔬食.png",
-        "typeIcon": "🍚",
+        "type": "義大利麵",
+        "restaurantImage": "sign/Sidewalk.png",
+        "typeIcon": "🍝",
         "place": "宵夜街",
         "openingHours": {
             "Monday": [],
@@ -5648,7 +5619,7 @@
             ]
         },
         "menuImages": [
-            "menu/Sidewalk人行道蔬食/Sidewalk人行道蔬食1.jpg"
+            "menu/Sidewalk.png"
         ],
         "map": "https://pse.is/9h53f7"
     },
@@ -5656,8 +5627,8 @@
     {   "id":97,
         "name": "宵夜屋自助餐",
         "type": "自助餐",
-        "restaurantImage": "sign/宵夜屋自助餐.png",
-        "typeIcon": "Icon/自助餐.svg",
+        "restaurantImage": "sign/宵夜屋.png",
+        "typeIcon": "🍽",
         "place": "宵夜街",
         "openingHours": {
             "Monday": [],
@@ -5668,9 +5639,7 @@
             "Saturday": [],
             "Sunday": []
         },
-        "menuImages": [
-            "menu/宵夜屋自助餐/宵夜屋自助餐1.jpg"
-        ],
+        "menuImages": [],
         "map": "https://pse.is/9h53cr"
     }
 ]
