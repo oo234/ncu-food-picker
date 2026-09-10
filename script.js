@@ -4,6 +4,66 @@ let restaurants = [];
 let categoryBoxes = [];
 let isSpinning = false; // 紀錄目前是否正在播放動畫，防止亂點出錯
 
+// ==============================
+// ❤️ 我的最愛 (Local Storage) 功能
+// ==============================
+// 從瀏覽器記憶中讀取收藏名單，如果沒有就預設為空陣列
+let favorites = JSON.parse(localStorage.getItem('ncu_favorites')) || [];
+
+// ==============================
+// 繪製我的最愛標籤清單
+// ==============================
+function renderFavoritesList() {
+    const listDiv = document.getElementById('favoritesList');
+    if (!listDiv) return;
+    
+    if (favorites.length === 0) {
+        listDiv.innerHTML = '<span class="fav-empty">目前沒有收藏，快去抽卡點愛心！</span>';
+        return;
+    }
+    
+    // 把收藏名單變成一顆顆小膠囊標籤
+    listDiv.innerHTML = favorites.map(name => 
+        `<span class="fav-tag">${name}</span>`
+    ).join('');
+}
+
+// ==============================
+// 控制「我的最愛清單」展開與隱藏
+// ==============================
+window.toggleFavList = function() {
+    const isChecked = document.getElementById("onlyFavorites").checked;
+    const listDiv = document.getElementById("favoritesList");
+    // 如果打勾就顯示(block)，沒打勾就隱藏(none)
+    listDiv.style.display = isChecked ? "block" : "none";
+};
+
+// 點擊愛心時觸發的開關函數
+window.toggleFavorite = function(name) {
+    const index = favorites.indexOf(name);
+    if (index > -1) {
+        favorites.splice(index, 1); // 已經在最愛裡，把它移除
+    } else {
+        favorites.push(name);       // 不在最愛裡，把它加進去
+    }
+    // 把最新名單存回瀏覽器
+    localStorage.setItem('ncu_favorites', JSON.stringify(favorites));
+
+    // 即時更新按鈕的圖案 (純圖示)
+    const btn = document.getElementById('favBtn');
+    if (btn) {
+        btn.innerHTML = favorites.includes(name) ? '❤️' : '🤍';
+    }
+
+    // 新增：每次點愛心後，即時更新右側面板的標籤！
+    renderFavoritesList();
+};
+
+// 讓「只抽最愛」的勾選框也能即時觸發畫面更新
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("onlyFavorites").addEventListener("change", updatePreview);
+});
+
 const categoryIcon = {
     "水餃/湯包": "Icon/水餃.svg",
     "早午餐": "Icon/早午餐.svg",
@@ -63,14 +123,20 @@ function isOpenDuringSlot(restaurant, slot) {
 }
 
 // ==============================
-// 取得目前勾選的餐廳清單
+// 取得目前勾選的餐廳清單 (升級版)
 // ==============================
 function getFilteredRestaurants() {
     const filtered = [];
     const checkedBoxes = document.querySelectorAll(".restaurantCheckbox:checked");
+    const onlyFavorites = document.getElementById("onlyFavorites").checked; // 檢查有沒有勾選只抽最愛
+
     checkedBoxes.forEach(function(checkbox){
         const restaurant = restaurants.find(r => r.name === checkbox.dataset.name);
-        if(restaurant) filtered.push(restaurant);
+        if(restaurant) {
+            // 如果勾選了「只抽最愛」，且這家店不在記憶的 favorites 陣列中，就跳過它
+            if (onlyFavorites && !favorites.includes(restaurant.name)) return;
+            filtered.push(restaurant);
+        }
     });
     return filtered;
 }
@@ -172,7 +238,7 @@ function updatePreview() {
 // ==============================
 function renderCheckboxes() {
     const slot = document.querySelector('input[name="timeSlot"]:checked').value;
-    const selectedLocation = document.getElementById("locationSelect").value;
+    const selectedLocation = document.getElementById("locationSelector").value;
     
     const restaurantCheckboxes = document.getElementById("restaurantCheckboxes");
     restaurantCheckboxes.innerHTML = ""; 
@@ -183,7 +249,7 @@ function renderCheckboxes() {
     restaurants.forEach(function(restaurant){
         if (selectedLocation !== "all" && restaurant.place !== selectedLocation) return;
 
-        const isOpen = isOpenDuringSlot(restaurant, slot);
+        const isOpen = (slot === "all") ? true : isOpenDuringSlot(restaurant, slot);
         if (isOpen) {
             const type = restaurant.type;
             if(!groups[type]) groups[type] = [];
@@ -307,18 +373,18 @@ fetch("restaurants_updated.json")
     const timeSlotRadios = document.querySelectorAll('input[name="timeSlot"]');
     timeSlotRadios.forEach(radio => radio.addEventListener("change", () => renderCheckboxes()));
     
-    document.getElementById("locationSelect").addEventListener("change", () => renderCheckboxes());
+    document.getElementById("locationSelector").addEventListener("change", () => renderCheckboxes());
 
     const drawMethodRadios = document.querySelectorAll('input[name="drawMethod"]');
     drawMethodRadios.forEach(radio => radio.addEventListener("change", updatePreview));
 });
 
-document.getElementById("selectAll").addEventListener("click",function(){
+document.getElementById("selectAllBtn").addEventListener("click",function(){
     document.querySelectorAll(".restaurantCheckbox").forEach(cb => cb.checked = true);
     updateCategoryCheckbox();
 });
 
-document.getElementById("unselectAll").addEventListener("click",function(){
+document.getElementById("deselectAllBtn").addEventListener("click",function(){
     document.querySelectorAll(".restaurantCheckbox").forEach(cb => cb.checked = false);
     updateCategoryCheckbox();
 });
@@ -361,6 +427,10 @@ document.getElementById("pickButton").addEventListener("click", function () {
     
     // ==============================
 
+    // 檢查抽到的這家店有沒有在最愛裡面，決定按鈕初始長相
+    const isFav = favorites.includes(randomRestaurant.name);
+    const favBtnText = isFav ? "❤️" : "🤍";
+
     const finalResultHtml = `
         <!-- 新增：只在結果出現時才載入的背景圖 -->
         <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('${randomCardBg}'); background-size: cover; background-position: center; z-index: 0;"></div>
@@ -371,6 +441,10 @@ document.getElementById("pickButton").addEventListener("click", function () {
                 <img src="${randomRestaurant.restaurantImage}" class="restaurantImage">
                 ${randomRestaurant.name}
             </h2>
+            <!-- 新增：純愛心按鈕，套用專屬 class -->
+            <button id="favBtn" class="fav-icon-btn" onclick="toggleFavorite('${randomRestaurant.name}')">
+                ${favBtnText}
+            </button>
             <p class="restaurantType">
                 類型：${randomRestaurant.type}
                 <span class="typeIcon">${randomRestaurant.typeIcon}</span>

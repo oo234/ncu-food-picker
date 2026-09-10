@@ -33,13 +33,13 @@
     <!-- 抽籤方式：現代膠囊切換 -->
     <div id="drawMethodSelector" class="modern-selector">
         <input type="radio" id="method-basic" name="drawMethod" value="basic" checked>
-        <label for="method-basic" class="selector-item">🎲 基礎秒抽</label>
+        <label for="method-basic" class="selector-item">🎲 基礎</label>
 
         <input type="radio" id="method-roulette" name="drawMethod" value="roulette">
-        <label for="method-roulette" class="selector-item">🎡 幸運轉盤</label>
+        <label for="method-roulette" class="selector-item">🎡 轉盤</label>
 
         <input type="radio" id="method-gacha" name="drawMethod" value="gacha">
-        <label for="method-gacha" class="selector-item">🎁 驚喜扭蛋</label>
+        <label for="method-gacha" class="selector-item">🎁 扭蛋</label>
 
         <div class="slider"></div>
     </div>
@@ -57,14 +57,15 @@
         <div class="restaurantPanel">
             <!-- 新增：右側面板頂部排版 -->
             <div class="panel-header">
-                <span class="panel-title">🍴 篩選餐廳</span>
+                <span class="panel-title">篩選餐廳</span>
                 <button id="closePanelBtn">✕</button>
             </div>
-            
-            <!-- 新增：地點選擇器 -->
-            <div id="locationSelector" style="margin-bottom: 15px; text-align: left; padding-left: 10px;">
-                <label style="font-weight: bold; display: block; margin-bottom: 5px;">📍 選擇地點</label>
-                <select id="locationSelect" style="width: 90%; padding: 8px; border-radius: 5px; border: 1px solid #ccc; font-size: 16px;">
+
+            <!-- 📍 選擇地點 -->
+            <div class="filter-section">
+                <label class="filter-label">選擇地點</label>
+                <!-- 加回 onchange="updatePreview()" -->
+                <select id="locationSelector" onchange="updatePreview()">
                     <option value="all">全地點</option>
                     <option value="後門">後門</option>
                     <option value="宵夜街">宵夜街</option>
@@ -76,19 +77,49 @@
                 </select>
             </div>
 
-            <!-- 時段選擇器 -->
-            <div id="timeSlotSelector" style="margin-bottom: 15px; text-align: left; padding-left: 10px;">
-                <label style="font-weight: bold; display: block; margin-bottom: 5px;">⏰ 選擇時段</label>
-                <label style="margin-right: 10px;"><input type="radio" name="timeSlot" value="none" checked> 全時段</label>
-                <label style="margin-right: 10px;"><input type="radio" name="timeSlot" value="lunch"> 午餐</label>
-                <label><input type="radio" name="timeSlot" value="dinner"> 晚餐</label>
+            <!-- 選擇時段 (全新滑動動畫版) -->
+            <div class="filter-section">
+                <label class="filter-label">選擇時段</label>
+                <div class="sliding-segmented-control">
+                    <input type="radio" id="time-all" name="timeSlot" value="all" onchange="updatePreview()" checked>
+                    <label for="time-all">全時段</label>
+
+                    <input type="radio" id="time-lunch" name="timeSlot" value="lunch" onchange="updatePreview()">
+                    <label for="time-lunch">午餐</label>
+
+                    <input type="radio" id="time-dinner" name="timeSlot" value="dinner" onchange="updatePreview()">
+                    <label for="time-dinner">晚餐</label>
+
+                    <!-- 負責滑動的白色色塊 -->
+                    <div class="slide-indicator"></div>
+                </div>
             </div>
 
-            <hr style="border: 0; border-top: 1px solid #ddd; margin: 15px 0;">
+            <!-- ❤️ 我的最愛 -->
+            <div class="filter-section">
+                <div class="toggle-section">
+                    <div class="toggle-text-group">
+                        <label class="filter-label" style="margin-bottom: 0;">我的最愛</label>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="onlyFavorites" onchange="updatePreview(); toggleFavList();">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div id="favoritesList" style="display: none; margin-top: 12px; padding-top: 12px; border-top: 1px dashed #ddd; line-height: 1.8;"></div>
+            </div>
+            
+            <hr class="filter-divider">
+            
+            <!-- 選擇 / 取消 按鈕 -->
+            <div class="filter-actions">
+                <button id="selectAllBtn" class="action-btn" onclick="selectAll()">全部選取</button>
+                <button id="deselectAllBtn" class="action-btn outline" onclick="deselectAll()">全部取消</button>
+            </div>
 
-            <button id="selectAll">全部選取</button>
-            <button id="unselectAll">全部取消</button>
-            <div id="restaurantCheckboxes"></div>
+            <!-- 👇 新增這行：把裝餐廳清單的盒子加回來 👇 -->
+            <div id="restaurantCheckboxes" style="text-align: left; padding-left: 5px; margin-top: 15px;"></div>
+            
         </div>
     </div>
 
