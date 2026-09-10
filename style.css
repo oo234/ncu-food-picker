@@ -1,51 +1,16 @@
 /* ==============================
-   整個網頁 (body)
+   1. 全域設定與基礎重置
    ============================== */
-
 body {
-    /* 網頁背景顏色 */
     background-color: #f5f5f5;
-    /* 讓所有文字、按鈕都置中 */
     text-align: center;
-    /* 網頁使用的字體 */
     font-family: Arial, sans-serif;
-}
-
-
-/* ==============================
-   「開始抽！」按鈕 (溫和質感與獨立換行)
-   ============================== */
-#pickButton {
-    display: block;                   /* 關鍵：強制按鈕獨立換行，不跟選單擠在一起 */
-    margin: 10px auto 30px auto;      /* 讓按鈕置中，並與上下保持適當距離 */
-    background: linear-gradient(135deg, #ffb74d, #f57c00); /* 降低飽和度，換成溫和的蜜桃橘 */
-    color: white;
-    border: none;
-    padding: 16px 45px;
-    font-size: 22px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 0 8px 15px rgba(245, 124, 0, 0.25); /* 陰影顏色配合調淡 */
-    transition: all 0.3s ease;
-}
-
-/* 滑鼠移上去的特效：微微上浮並發光 */
-#pickButton:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 20px rgba(245, 124, 0, 0.35);
-    background: linear-gradient(135deg, #ffcc80, #fb8c00); /* 懸浮時溫和提亮 */
-}
-
-/* 滑鼠點擊下去的瞬間：壓下按鈕的反饋 */
-#pickButton:active {
-    transform: translateY(1px);
-    box-shadow: 0 3px 8px rgba(245, 124, 0, 0.2);
+    margin: 0;
+    padding: 0;
 }
 
 /* ==============================
-   左右版面 (修改為單純置中)
+   2. 主版面佈局
    ============================== */
 .container {
     display: flex;
@@ -55,689 +20,48 @@ body {
     width: 100%;
 }
 
-/* 左邊 */
 .leftPanel {
-    display: none; /* 既然目前沒有內容，直接隱藏，才不會佔用空間 */
+    display: none; 
 }
 
-/* 中間 */
-.mainContent{
-    display:flex;
-    justify-content:center;
-    width: 100%; /* 新增這行：強制父容器撐滿全寬 */
-}
-
-/* ==============================
-   右邊：餐廳選擇面板 (改為滑動抽屜)
-   ============================== */
-.restaurantPanel {
-    position: fixed;
-    top: 0;
-    right: -350px; /* 預設隱藏在畫面右側外面 */
-    width: 300px;
-    height: 100vh; /* 高度佔滿整個螢幕 */
-    background: white;
-    padding: 20px;
-    box-shadow: -2px 0 10px rgba(0,0,0,0.2); /* 讓側邊欄有一點左側陰影 */
-    overflow-y: auto; /* 內容過多時可以上下滾動 */
-    transition: right 0.3s ease-in-out; /* 加入滑動出現的動畫效果 */
-    z-index: 1000; /* 確保它在畫面最上層 */
-}
-
-/* 面板展開狀態 */
-.restaurantPanel.open {
-    right: 0; /* 滑動到畫面邊緣 */
-}
-
-/* 打開右側面板的乾淨圖示樣式 */
-#togglePanelBtn {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: transparent; /* 背景透明 */
-    color: #333;
-    border: none;
-    font-size: 28px;         /* 齒輪圖案稍微放大 */
-    cursor: pointer;
-    z-index: 999;
-    padding: 5px 10px;
-    box-shadow: none;        /* 移除原有的陰影 */
-    transition: transform 0.3s; /* 加入平滑動畫 */
-}
-
-/* 滑鼠移到齒輪上的效果 */
-#togglePanelBtn:hover {
-    background: transparent;
-    transform: scale(1.1) rotate(25deg); /* 滑鼠移過去時稍微放大並轉動齒輪 */
-}
-
-.panel-header {
+.mainContent {
     display: flex;
-    justify-content: space-between; /* 標題靠左，叉叉靠右 */
-    align-items: center;            /* 垂直置中 */
-    margin-bottom: 15px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ddd;  /* 底部淡灰色分隔線 */
+    justify-content: center;
+    width: 100%; 
 }
 
-/* 右側面板標題文字 */
-.panel-title {
-    font-size: 20px;
+/* ==============================
+   3. 抽籤主按鈕與選擇器
+   ============================== */
+#pickButton {
+    display: block;                   
+    margin: 10px auto 30px auto;      
+    background: linear-gradient(135deg, #ffb74d, #f57c00); 
+    color: white;
+    border: none;
+    padding: 16px 45px;
+    font-size: 22px;
     font-weight: bold;
-    color: #333;
-}
-
-/* 關閉篩選的「叉叉」圖示樣式 */
-#closePanelBtn {
-    background: transparent;
-    border: none;
-    font-size: 24px;
-    color: #555;
+    letter-spacing: 2px;
+    border-radius: 50px;
     cursor: pointer;
-    padding: 5px 12px;
-    border-radius: 8px;
-    transition: background 0.2s;
-    width: auto;             /* 覆蓋掉舊版的 100% 寬度 */
-    margin-bottom: 0;        /* 覆蓋掉舊版的底部邊距 */
+    box-shadow: 0 8px 15px rgba(245, 124, 0, 0.25); 
+    transition: all 0.3s ease;
 }
 
-/* 滑鼠移到叉叉上的效果 */
-#closePanelBtn:hover {
-    background: #f0f0f0;     /* 變成淺灰底色 */
-    opacity: 1;              /* 取消舊版的變透明效果 */
+#pickButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 20px rgba(245, 124, 0, 0.35);
+    background: linear-gradient(135deg, #ffcc80, #fb8c00); 
 }
 
-/* ==============================
-   餐廳資訊卡片
-   ============================== */
-
-#result {
-    /* 卡片背景 */
-    background-color: white;
-    /* 卡片寬度 */
-    width: 90%;          /* 在手機上佔滿螢幕 90% 的寬度 */
-    max-width: 600px;    /* 在電腦上最大不超過 600px，保持原本的好看比例 */
-    /* 讓卡片置中 */
-    margin: 30px auto;
-    /* 卡片內部空間 */
-    padding: 20px;
-    /* 圓角 */
-    border-radius: 15px;
-    /* 陰影效果 */
-    box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
-    /* 新增這行：讓背景圖片乖乖待在圓角裡面，不會凸出去 */
-    overflow: hidden;
-    /* 新增這行：讓結果畫面裡的背景圖片以此卡片為範圍 */
-    position: relative;
+#pickButton:active {
+    transform: translateY(1px);
+    box-shadow: 0 3px 8px rgba(245, 124, 0, 0.2);
 }
 
-#result a {
-    display: inline-block;
-    /* 按鈕背景 */
-    background-color: #4caf50;
-    /* 文字顏色 */
-    color:white;
-    /* 取消底線 */
-    text-decoration:none;
-    /* 內距 */
-    padding:10px 20px;
-    /* 圓角 */
-    border-radius:8px;
-    /* 上方距離 */
-    margin-top:15px;
-}
-
-/* ==============================
-   菜單圖片排列
-   ============================== */
-
-.menuImages {
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-    gap:15px;
-    flex-wrap:wrap;
-}
-
-/* 菜單圖片 */
-.menuImage {
-    max-width: 250px;
-    height: auto;
-    object-fit: contain;
-    cursor: pointer;
-}
-
-.menuImage:hover {
-    transform: scale(1.05);
-}
-
-/* 手機版 */
-@media (max-width:600px){
-    /* 縮小抽籤按鈕的左右留白，避免按鈕被切掉 */
-    #pickButton {
-        padding: 12px 30px;
-        font-size: 18px;
-    }
-    
-    /* 調整左右面板寬度，避免佔滿整個手機畫面導致點不到外面的叉叉 */
-    .restaurantPanel, .leftMenu {
-        width: 85%;
-    }
-    
-    /* 調整頂部兩個小圖示按鈕的位置，避免被手機的「瀏海」干擾 */
-    #toggleLeftMenuBtn { top: 10px; left: 10px; }
-    #togglePanelBtn { top: 10px; right: 10px; }
-
-    .menuImages{
-        gap:10px;
-    }
-    .menuImage{
-        width:45%;
-        height:auto;
-    }
-}
-
-/* ==============================
-   Lightbox 燈箱效果
-   ============================== */
-#lightbox {
-    display:none;
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.8);
-    justify-content:center;
-    align-items:center;
-    z-index:999;
-}
-
-#lightboxImage {
-    max-width:90%;
-    max-height:90%;
-    border-radius:10px;
-}
-
-/* 餐廳招牌圖片 */
-.restaurantImage {
-    width:50px;
-    height:50px;
-    object-fit:cover;
-    border-radius:50%;
-}
-
-/* 標題排列 */
-.restaurantTitle {
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-}
-
-/* 類別圖案 */
-.typeIcon {
-    font-size: 20px; 
-    margin-left: 0px;
-    
-    /* 確保這兩行有加進去，用來微調高度 */
-    position: relative;
-    top: -1px; /* 負數代表往上移，覺得不夠可以改 -4px 或 -5px */
-    
-    /* 注意：一定要把原本的 vertical-align: middle; 拿掉，以免互相干擾 */
-}
-
-.categoryTitle{
-    font-size:20px;
-    font-weight:bold;
-    margin-top:20px;
-    margin-bottom:10px;
-    text-align:left;
-}
-
-.restaurantItem{
-    display:block;
-    margin-left:30px;   /* 讓店家往右縮排 */
-    margin-bottom:8px;
-    text-align:left;
-}
-
-.restaurantList{
-    display:none;
-    margin-left:30px;
-}
-
-#expandAll,
-#collapseAll{
-    background-color:#4caf50;
-    color:white;
-    border:none;
-    padding:8px 15px;
-    margin:5px;
-    border-radius:8px;
-    cursor:pointer;
-}
-
-#expandAll:hover,
-#collapseAll:hover{
-    opacity:0.8;
-}
-
-.categoryIcon{
-    width:30px;
-    height:30px;
-    object-fit:contain;
-    margin-right:8px;
-    vertical-align:middle;
-}
-
-.categoryIcon {
-    width: 32px;
-    height: 32px;
-    transition: transform 0.3s ease;
-}
-
-/* 滑鼠移到右側分類圖片 */
-.categoryIcon:hover {
-    transform: scale(1.25) rotate(10deg);
-}
-
-/* ==============================
-   抽籤動畫特效
-   ============================== */
-
-/* 🎡 圓形轉盤的容器 */
-.wheel-container {
-    position: relative;
-    width: 350px;
-    height: 350px;
-    margin: 20px auto;
-    border-radius: 50%;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    border: 6px solid #fff;
-    overflow: hidden; /* 確保畫布不會超出圓形 */
-}
-
-/* 繪製出來的轉盤本身 */
-.wheel-canvas {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    /* 動畫過渡：cubic-bezier 讓它有「先快後慢，最後緩緩停下」的真實物理感 */
-    transition: transform 4s cubic-bezier(0.1, 0.7, 0.1, 1);
-    transform: rotate(0deg);
-}
-
-/* 轉盤頂部的紅色指針 */
-.wheel-pointer {
-    position: absolute;
-    top: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 0;
-    /* 用邊框畫出一個倒三角形 */
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-    border-top: 35px solid #e74c3c;
-    z-index: 10;
-    filter: drop-shadow(0px 3px 3px rgba(0,0,0,0.4));
-}
-
-/* ==============================
-   🎁 真實扭蛋機 動畫特效
-   ============================== */
-
-/* 扭蛋機本體 */
-.gacha-machine-container {
-    position: relative;
-    width: 240px;
-    height: 380px;
-    margin: 20px auto;
-}
-
-/* 玻璃圓罩 */
-.gacha-globe {
-    position: relative;
-    width: 240px;
-    height: 240px;
-    background: rgba(220, 240, 255, 0.4);
-    border: 5px solid #bdc3c7;
-    border-radius: 50%;
-    overflow: hidden;
-    z-index: 2;
-    box-shadow: inset -15px -15px 20px rgba(0,0,0,0.1);
-}
-
-/* 玻璃反光 */
-.gacha-globe::after {
-    content: "";
-    position: absolute;
-    top: 20px;
-    left: 30px;
-    width: 60px;
-    height: 30px;
-    background: rgba(255, 255, 255, 0.6);
-    border-radius: 50%;
-    transform: rotate(-45deg);
-}
-
-/* 紅色機台底座 */
-.gacha-base {
-    position: relative;
-    width: 180px;
-    height: 160px;
-    background: #e74c3c;
-    margin: -40px auto 0;
-    border-radius: 0 0 20px 20px;
-    z-index: 1;
-    box-shadow: inset -10px -10px 15px rgba(0,0,0,0.2);
-}
-
-/* 轉動旋鈕 */
-.gacha-knob {
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    background: #ecf0f1;
-    border-radius: 50%;
-    top: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 3px solid #bdc3c7;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-    transition: transform 0.5s ease-in-out;
-}
-
-.gacha-knob::before {
-    content: "";
-    position: absolute;
-    width: 40px;
-    height: 12px;
-    background: #95a5a6;
-    top: 21px;
-    left: 7px;
-    border-radius: 6px;
-}
-
-/* 旋鈕轉動動畫 */
-.gacha-knob.turn {
-    transform: translateX(-50%) rotate(360deg);
-}
-
-/* 出口洞口 (調低高度與位置，才不會跟旋鈕重疊) */
-.gacha-chute {
-    position: absolute;
-    width: 70px;
-    height: 50px;
-    background: #2c3e50;
-    bottom: 2px; /* 往下挪 */
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 10px 10px 0 0;
-    box-shadow: inset 0 10px 15px rgba(0,0,0,0.5);
-    z-index: 3;
-}
-
-/* 裡面的各種扭蛋球 */
-.gacha-ball {
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    border: 2px solid rgba(0,0,0,0.1);
-    box-shadow: inset -5px -5px 10px rgba(0,0,0,0.2);
-}
-
-/* 四顆球的獨立位置與顏色 (已將藍色橘色分開) */
-.ball-1 { background: linear-gradient(to bottom, #ff4757 50%, #fff 50%); top: 140px; left: 30px; transform: rotate(15deg); z-index: 1; }
-.ball-2 { background: linear-gradient(to bottom, #1e90ff 50%, #fff 50%); top: 80px; left: 90px; transform: rotate(-25deg); z-index: 2; }
-.ball-3 { background: linear-gradient(to bottom, #2ed573 50%, #fff 50%); top: 120px; left: 140px; transform: rotate(45deg); z-index: 1; }
-.ball-4 { background: linear-gradient(to bottom, #ffa502 50%, #fff 50%); top: 165px; left: 95px; transform: rotate(-10deg); z-index: 3; }
-
-/* 掉出來的扭蛋 */
-.dropped-ball {
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    border: 2px solid rgba(0,0,0,0.1);
-    z-index: 5; /* z-index 為 5，大於黑洞的 3，保證會在黑洞前面！ */
-    top: 150px;
-    left: 90px;
-    opacity: 0;
-}
-
-/* 俐落的掉落動畫 */
-.dropped-ball.drop {
-    animation: drop-animation 0.6s ease-in forwards;
-}
-
-@keyframes drop-animation {
-    0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
-    60%  { transform: translateY(160px) rotate(180deg); opacity: 1; } /* 剛好掉進黑洞的高度 */
-    90%  { transform: translateY(160px) rotate(180deg); opacity: 1; } /* 停留展示一下 */
-    100% { transform: translateY(160px) rotate(180deg); opacity: 0; }
-}
-
-/* 放大顯示並打開的扭蛋 */
-.zoom-ball-container {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    margin: 60px auto;
-    opacity: 0;
-    transform: scale(0.1);
-    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.zoom-ball-container.show {
-    opacity: 1;
-    transform: scale(1);
-}
-
-/* 扭蛋上半部 */
-.zoom-ball-top {
-    position: absolute;
-    width: 200px;
-    height: 100px;
-    border-radius: 100px 100px 0 0;
-    top: 0;
-    transition: all 0.6s ease-in-out;
-    z-index: 2;
-    box-shadow: inset -10px -5px 15px rgba(0,0,0,0.1);
-}
-
-/* 扭蛋下半部 */
-.zoom-ball-bottom {
-    position: absolute;
-    width: 200px;
-    height: 100px;
-    background: #fff;
-    border-radius: 0 0 100px 100px;
-    bottom: 0;
-    border-top: 4px solid #ccc;
-    transition: all 0.6s ease-in-out;
-    z-index: 1;
-    box-shadow: inset -10px -10px 15px rgba(0,0,0,0.1);
-}
-
-/* 打開的動畫：上下半部分開飛走 */
-.zoom-ball-container.open .zoom-ball-top {
-    transform: translateY(-80px) rotate(-15deg);
-    opacity: 0;
-}
-
-.zoom-ball-container.open .zoom-ball-bottom {
-    transform: translateY(80px) rotate(15deg);
-    opacity: 0;
-}
-
-/* 裡面的驚喜特效 */
-.gacha-result-icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    font-size: 60px;
-    transform: translate(-50%, -50%) scale(0);
-    transition: transform 0.6s 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    z-index: 0;
-}
-
-.zoom-ball-container.open .gacha-result-icon {
-    transform: translate(-50%, -50%) scale(1.5);
-}
-
-/* ==============================
-   扭蛋攪拌動畫
-   ============================== */
-@keyframes ball-mix-1 {
-    0%   { margin-top: 0px; margin-left: 0px; }
-    25%  { margin-top: -20px; margin-left: -15px; }
-    50%  { margin-top: 15px; margin-left: -20px; }
-    75%  { margin-top: 20px; margin-left: 15px; }
-    100% { margin-top: 0px; margin-left: 0px; }
-}
-
-/* 軌跡 2：右上左下彈跳 */
-@keyframes ball-mix-2 {
-    0%   { margin-top: 0px; margin-left: 0px; }
-    25%  { margin-top: 15px; margin-left: 20px; }
-    50%  { margin-top: -25px; margin-left: 10px; }
-    75%  { margin-top: -10px; margin-left: -20px; }
-    100% { margin-top: 0px; margin-left: 0px; }
-}
-
-/* 軌跡 3：偏重上下劇烈彈跳 */
-@keyframes ball-mix-3 {
-    0%   { margin-top: 0px; margin-left: 0px; }
-    33%  { margin-top: -30px; margin-left: 5px; }
-    66%  { margin-top: 25px; margin-left: -5px; }
-    100% { margin-top: 0px; margin-left: 0px; }
-}
-
-/* 分別套用不同的軌跡、速度，甚至反轉方向 (reverse) */
-.ball-1.mixing { animation: ball-mix-1 0.25s infinite; }
-.ball-2.mixing { animation: ball-mix-2 0.35s infinite; }
-.ball-3.mixing { animation: ball-mix-3 0.28s infinite; }
-/* 讓橘色球借用軌跡 1，但是倒著跑，確保絕對不會跟別的球同步！ */
-.ball-4.mixing { animation: ball-mix-1 0.32s infinite reverse; }
-
-/* ==============================
-   左側選單面板
-   ============================== */
-.leftMenu {
-    position: fixed;
-    top: 0;
-    left: -300px; /* 預設隱藏在畫面左側外面 */
-    width: 250px;
-    height: 100vh; /* 高度佔滿整個螢幕 */
-    background: white;
-    padding: 20px;
-    box-shadow: 2px 0 10px rgba(0,0,0,0.2); /* 在右側加上陰影 */
-    transition: left 0.3s ease-in-out; /* 加入滑動出現的動畫效果 */
-    z-index: 1000; /* 確保它在畫面最上層 */
-}
-
-/* 左側面板展開狀態 */
-.leftMenu.open {
-    left: 0; /* 滑動到畫面邊緣 */
-}
-
-/* 打開左側面板的乾淨圖示樣式 */
-#toggleLeftMenuBtn {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    background: transparent; /* 把背景變成透明的 */
-    color: #333;             /* 字體顏色改成深灰色 */
-    border: none;
-    font-size: 24px;         /* 把字體放大，讓 ☰ 更像一個大圖示 */
-    cursor: pointer;
-    z-index: 999;
-    padding: 5px 10px;
-    box-shadow: none;        /* 移除按鈕的立體陰影 */
-    transition: color 0.2s;  /* 增加變色的平滑過渡動畫 */
-}
-
-/* 滑鼠移上去時的效果 */
-#toggleLeftMenuBtn:hover {
-    color: #ff9800; /* 滑鼠移過去時，字體變成橘色 (和你網站的主色調一致) */
-    background: transparent; /* 保持背景透明 */
-}
-
-/* 新增：選單頂部排版 (讓 NCU 靠左，✕ 靠右) */
-.leftMenu-header {
-    display: flex;
-    justify-content: space-between; /* 左右撐開 */
-    align-items: center;            /* 垂直置中 */
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ddd;  /* 下方加一條淡淡的分隔線 */
-}
-
-/* NCU 文字樣式 */
-.leftMenu-logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    letter-spacing: 2px; /* 字元間距拉開一點更好看 */
-}
-
-/* 關閉面板的「叉叉」圖示樣式 */
-#closeLeftMenuBtn {
-    background: transparent;
-    border: none;
-    font-size: 24px;
-    color: #555;          /* 低調的灰色 */
-    cursor: pointer;
-    padding: 5px 12px;
-    border-radius: 8px;   /* 加上一點圓角 */
-    transition: background 0.2s; /* 把動畫改成只有背景色變化 */
-}
-
-/* 滑鼠移到叉叉上的效果 (不再變紅) */
-#closeLeftMenuBtn:hover {
-    background: #f0f0f0;  /* 滑鼠移過去變成淡淡的淺灰色背景 */
-}
-
-/* 選單清單樣式 */
-.menu-list {
-    list-style: none;
-    padding: 0;
-    text-align: left;
-}
-
-.menu-list li {
-    margin-bottom: 10px;
-}
-
-.menu-list a {
-    text-decoration: none;
-    color: #333;
-    font-size: 18px;
-    display: block;
-    padding: 12px;
-    border-radius: 8px;
-    transition: background 0.2s;
-}
-
-.menu-list a:hover {
-    background: #f0f0f0;
-}
-
-/* ==============================
-   現代化：抽籤方式選擇器 (支援滑動特效)
-   ============================== */
-
-/* 1. 隱藏預設的圓圈圈 */
-.modern-selector input[type="radio"] {
-    display: none;
-}
-
-/* 2. 外圍的灰色凹槽底座 */
 .modern-selector {
-    position: relative; /* 關鍵：讓滑塊知道要在這個範圍內移動 */
+    position: relative; 
     display: inline-flex;
     background-color: #e4e4e9;
     border-radius: 30px;
@@ -746,12 +70,15 @@ body {
     box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
 }
 
-/* 3. 每一個選項標籤 (文字與圖示) */
+.modern-selector input[type="radio"] {
+    display: none;
+}
+
 .selector-item {
     position: relative; 
-    z-index: 2;              /* 確保文字在白色滑塊的「上方」 */
-    flex: 1;                 /* 讓三個選項的寬度完美平分 */
-    justify-content: center; /* 內容置中 */
+    z-index: 2;              
+    flex: 1;                 
+    justify-content: center; 
     padding: 10px 20px;
     border-radius: 25px;
     cursor: pointer;
@@ -764,227 +91,331 @@ body {
     gap: 8px;
 }
 
-.selector-item:hover {
-    color: #333;
-}
+.selector-item:hover { color: #333; }
+.modern-selector input[type="radio"]:checked + .selector-item { color: #ff9800; }
 
-/* 4. 文字被選中時變色 (不再設定背景，交給下方的 slider) */
-.modern-selector input[type="radio"]:checked + .selector-item {
-    color: #ff9800; 
-}
-
-/* 5. 獨立的白色滑塊 */
 .slider {
     position: absolute;
     top: 6px;
     bottom: 6px;
     left: 6px;
-    width: calc((100% - 12px) / 3); /* 自動計算 1/3 的寬度 */
+    width: calc((100% - 12px) / 3); 
     background-color: #ffffff;
     border-radius: 25px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    z-index: 1; /* 墊在文字下面 */
-    /* 物理回彈感的滑動動畫 */
+    z-index: 1; 
     transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1.1); 
 }
 
-/* 6. 控制滑塊左右移動的魔法 */
-input#method-basic:checked ~ .slider {
-    transform: translateX(0);
-}
-input#method-roulette:checked ~ .slider {
-    transform: translateX(100%);
-}
-input#method-gacha:checked ~ .slider {
-    transform: translateX(200%);
-}
+input#method-basic:checked ~ .slider { transform: translateX(0); }
+input#method-roulette:checked ~ .slider { transform: translateX(100%); }
+input#method-gacha:checked ~ .slider { transform: translateX(200%); }
 
 /* ==============================
-   右上角愛心收藏按鈕 (現代毛玻璃版)
+   4. 側邊選單面板 (左右 Drawer)
    ============================== */
-.fav-icon-btn {
-    position: absolute;
-    top: 15px;             /* 往內縮一點，不要死貼著邊緣 */
-    right: 15px;
-    background: rgba(255, 255, 255, 0.7); /* 半透明的白色底座 */
-    backdrop-filter: blur(8px);           /* 關鍵魔法：毛玻璃模糊特效 */
-    -webkit-backdrop-filter: blur(8px);   /* 支援 Safari 瀏覽器 */
-    border: 1px solid rgba(255, 255, 255, 0.5); /* 加上極細的微光邊框 */
-    border-radius: 50%;                   /* 變成正圓形 */
-    width: 45px;                          /* 固定寬度 */
-    height: 45px;                         /* 固定高度 */
-    display: flex;                        /* 讓裡面的愛心完美置中 */
+.restaurantPanel, .leftMenu {
+    position: fixed;
+    top: 0;
+    width: 300px;
+    height: 100vh;
+    background: white;
+    padding: 20px;
+    overflow-y: auto;
+    z-index: 1000;
+    transition: 0.3s ease-in-out;
+}
+
+/* 左側面板 */
+.leftMenu {
+    left: -350px;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+}
+.leftMenu.open { left: 0; }
+
+/* 右側面板 */
+.restaurantPanel {
+    right: -350px;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+}
+.restaurantPanel.open { right: 0; }
+
+/* 面板頂部結構 */
+.panel-header, .leftMenu-header {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    font-size: 22px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+.panel-title { font-size: 20px; font-weight: bold; color: #333; }
+.leftMenu-logo { font-size: 24px; font-weight: bold; color: #333; letter-spacing: 2px; }
+
+/* 觸發器按鈕與叉叉 */
+#togglePanelBtn, #toggleLeftMenuBtn {
+    position: fixed;
+    top: 20px;
+    background: transparent;
+    border: none;
     cursor: pointer;
-    z-index: 10;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 柔和的立體陰影 */
-    /* 帶有物理 Q 彈感的過渡動畫 */
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+    z-index: 999;
+    padding: 5px 10px;
+    transition: 0.3s;
 }
+#togglePanelBtn { right: 20px; color: #333; font-size: 28px; }
+#togglePanelBtn:hover { transform: scale(1.1) rotate(25deg); }
 
-/* 滑鼠移上去時的特效 */
-.fav-icon-btn:hover {
-    transform: scale(1.15);               /* 微微放大 */
-    background: rgba(255, 255, 255, 0.95);/* 底色變白、變實心 */
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15); /* 陰影加深 */
-}
+#toggleLeftMenuBtn { left: 20px; color: #333; font-size: 24px; }
+#toggleLeftMenuBtn:hover { color: #ff9800; }
 
-/* 按下去瞬間的特效 */
-.fav-icon-btn:active {
-    transform: scale(0.9);                /* 呈現被按壓微縮的真實感 */
+#closePanelBtn, #closeLeftMenuBtn {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: #555;
+    cursor: pointer;
+    padding: 5px 12px;
+    border-radius: 8px;
+    transition: background 0.2s;
 }
+#closePanelBtn:hover, #closeLeftMenuBtn:hover { background: #f0f0f0; }
+
+/* 左側清單樣式 */
+.menu-list { list-style: none; padding: 0; text-align: left; }
+.menu-list li { margin-bottom: 10px; }
+.menu-list a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    display: block;
+    padding: 12px;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+.menu-list a:hover { background: #f0f0f0; }
+
 /* ==============================
-   右側篩選面板：極簡現代化 UI (Apple / Notion 風格)
+   5. 右側面板內部：現代化 UI 篩選器
    ============================== */
-
-/* 統一樣式的標題與間距 */
 .filter-section { margin-bottom: 24px; padding: 0 5px; }
 .filter-label {
-    display: block;
-    font-size: 14px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 8px;
-    text-align: left;
+    display: block; font-size: 14px; font-weight: 600;
+    color: #333; margin-bottom: 8px; text-align: left;
 }
 
-/* 1. 地點下拉選單 (極簡純白 + 細緻灰框) */
 #locationSelector {
-    width: 100%;
-    padding: 10px 12px;
-    font-size: 14px;
-    color: #111;
-    background-color: #fff;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
+    width: 100%; padding: 10px 12px; font-size: 14px;
+    color: #111; background-color: #fff;
+    border: 1px solid #d1d5db; border-radius: 8px;
     appearance: none;
     background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23999%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
-    background-repeat: no-repeat;
-    background-position: right 12px top 50%;
-    background-size: 12px auto;
-    outline: none;
-    cursor: pointer;
-    transition: all 0.2s ease;
+    background-repeat: no-repeat; background-position: right 12px top 50%;
+    background-size: 12px auto; outline: none; cursor: pointer; transition: all 0.2s ease;
 }
 #locationSelector:focus { border-color: #111; box-shadow: 0 0 0 2px rgba(0,0,0,0.05); }
 
-/* 2. 選擇時段 (滑動動畫版) */
 .sliding-segmented-control {
-    display: flex;
-    position: relative;
-    background-color: #f3f4f6;
-    border-radius: 8px;
-    padding: 4px;
-    z-index: 1;
+    display: flex; position: relative; background-color: #f3f4f6;
+    border-radius: 8px; padding: 4px; z-index: 1;
 }
-.sliding-segmented-control input[type="radio"] { 
-    display: none; 
-}
+.sliding-segmented-control input[type="radio"] { display: none; }
 .sliding-segmented-control label {
-    flex: 1;
-    text-align: center;
-    padding: 6px 0;
-    font-size: 13px;
-    font-weight: 600;
-    color: #6b7280;
-    cursor: pointer;
-    transition: color 0.3s ease;
-    z-index: 3; /* 確保文字浮在滑動色塊上方 */
+    flex: 1; text-align: center; padding: 6px 0; font-size: 13px; font-weight: 600;
+    color: #6b7280; cursor: pointer; transition: color 0.3s ease; z-index: 3;
 }
-
-/* 文字被選取時變深色 */
-.sliding-segmented-control input[type="radio"]:checked + label {
-    color: #111;
-}
-
-/* 滑動的白色背景色塊 */
+.sliding-segmented-control input[type="radio"]:checked + label { color: #111; }
 .slide-indicator {
-    position: absolute;
-    top: 4px;
-    left: 4px;
-    width: calc((100% - 8px) / 3); /* 自動計算三分之一的寬度 */
-    height: calc(100% - 8px);
-    background-color: #fff;
-    border-radius: 6px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* 帶有 Q 彈感的流暢速度線 */
+    position: absolute; top: 4px; left: 4px; width: calc((100% - 8px) / 3);
+    height: calc(100% - 8px); background-color: #fff; border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08); transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     z-index: 2;
 }
-
-/* 根據選取的選項，移動背景色塊的位置 */
 #time-all:checked ~ .slide-indicator { transform: translateX(0); }
 #time-lunch:checked ~ .slide-indicator { transform: translateX(100%); }
 #time-dinner:checked ~ .slide-indicator { transform: translateX(200%); }
 
-/* 3. 我的最愛開關 (徹底解決變形問題，改為 iOS 經典綠) */
-.toggle-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+.toggle-section { display: flex; justify-content: space-between; align-items: center; }
 .toggle-text-group { text-align: left; }
-.toggle-desc { font-size: 12px; color: #6b7280; }
-
-.switch { 
-    position: relative; 
-    display: block; 
-    flex: 0 0 50px !important; /* 絕對不允許被文字擠壓，死守 50px 寬度 */
-    width: 50px !important; 
-    height: 28px !important; 
-    margin: 0;
-}
+.switch { position: relative; display: block; flex: 0 0 50px !important; width: 50px !important; height: 28px !important; margin: 0; }
 .switch input { opacity: 0; width: 0; height: 0; position: absolute; }
 .slider.round {
-    position: absolute; cursor: pointer;
-    top: 0; left: 0; width: 100%; height: 100%; /* 強制填滿 50x28 的空間 */
+    position: absolute; cursor: pointer; top: 0; left: 0; width: 100%; height: 100%;
     background-color: #e5e5ea; transition: .3s; border-radius: 30px;
 }
 .slider.round:before {
-    position: absolute; content: "";
-    height: 24px; width: 24px; 
-    left: 2px; bottom: 2px; 
-    background-color: white; transition: .3s; border-radius: 50%;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    position: absolute; content: ""; height: 24px; width: 24px; left: 2px; bottom: 2px;
+    background-color: white; transition: .3s; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.15);
 }
-.switch input:checked + .slider.round { background-color: #34c759; /* 改用 iOS 系統標準綠色，最現代 */ }
+.switch input:checked + .slider.round { background-color: #34c759; }
 .switch input:checked + .slider.round:before { transform: translateX(20px); }
 
-/* 4. 分隔線與全選按鈕 (洗掉橘色，換成高級灰底) */
 .filter-divider { border: 0; border-top: 1px solid #e5e7eb; margin: 20px 0; }
 .filter-actions { display: flex; gap: 10px; margin-bottom: 15px; padding: 0 5px; }
-
 .action-btn {
-    flex: 1; padding: 8px 0; border-radius: 6px;
-    font-size: 13px; font-weight: 600; cursor: pointer;
-    transition: all 0.2s; border: none;
-    background-color: #f3f4f6; color: #111; /* 低調的灰底黑字 */
+    flex: 1; padding: 8px 0; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer;
+    transition: all 0.2s; border: none; background-color: #f3f4f6; color: #111;
 }
 .action-btn:hover { background-color: #e5e7eb; }
 .action-btn.outline { background-color: transparent; border: 1px solid #d1d5db; color: #4b5563; }
 .action-btn.outline:hover { background-color: #f9fafb; }
 
-/* 5. 底下的餐廳勾選框 (排除我的最愛開關，防止互相干擾) */
-input[type="checkbox"]:not(#onlyFavorites) {
-    accent-color: #4b5563; 
-    width: 16px; 
-    height: 16px; 
-    cursor: pointer;
+input[type="checkbox"]:not(#onlyFavorites) { accent-color: #4b5563; width: 16px; height: 16px; cursor: pointer; }
+
+/* 最愛標籤 */
+.fav-tag {
+    display: inline-block; background-color: #f9fafb; color: #111;
+    border: 1px solid #e5e7eb; padding: 4px 12px; border-radius: 15px;
+    font-size: 12px; font-weight: 600; margin: 0 6px 6px 0;
+}
+.fav-empty { font-size: 12px; color: #9ca3af; }
+
+/* ==============================
+   6. 抽籤結果卡片與內部元素
+   ============================== */
+#result {
+    background-color: white;
+    width: 90%; max-width: 600px; margin: 30px auto; padding: 20px;
+    border-radius: 15px; box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+    overflow: hidden; position: relative;
+}
+#result a {
+    display: inline-block; background-color: #4caf50; color: white;
+    text-decoration: none; padding: 10px 20px; border-radius: 8px; margin-top: 15px;
+}
+.restaurantTitle { display: flex; align-items: center; justify-content: center; gap: 10px; }
+.restaurantImage { width: 50px; height: 50px; object-fit: cover; border-radius: 50%; }
+.typeIcon { font-size: 20px; margin-left: 0px; position: relative; top: -1px; }
+
+.menuImages { display: flex; justify-content: center; align-items: flex-start; gap: 15px; flex-wrap: wrap; }
+.menuImage { max-width: 250px; height: auto; object-fit: contain; cursor: pointer; }
+.menuImage:hover { transform: scale(1.05); }
+
+.fav-icon-btn {
+    position: absolute; top: 15px; right: 15px; background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 50%;
+    width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;
+    font-size: 22px; cursor: pointer; z-index: 10; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+}
+.fav-icon-btn:hover { transform: scale(1.15); background: rgba(255, 255, 255, 0.95); box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15); }
+.fav-icon-btn:active { transform: scale(0.9); }
+
+/* ==============================
+   7. 列表分類與圖示
+   ============================== */
+.categoryTitle { font-size: 20px; font-weight: bold; margin-top: 20px; margin-bottom: 10px; text-align: left; }
+.restaurantItem { display: block; margin-left: 30px; margin-bottom: 8px; text-align: left; }
+.restaurantList { display: none; margin-left: 30px; }
+.categoryIcon { width: 32px; height: 32px; object-fit: contain; margin-right: 8px; transition: transform 0.3s ease; }
+.categoryIcon:hover { transform: scale(1.25) rotate(10deg); }
+
+/* ==============================
+   8. 燈箱效果 (Lightbox)
+   ============================== */
+#lightbox {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8); justify-content: center; align-items: center; z-index: 999;
+}
+#lightboxImage { max-width: 90%; max-height: 90%; border-radius: 10px; }
+
+/* ==============================
+   9. 轉盤與扭蛋動畫
+   ============================== */
+.wheel-container {
+    position: relative; width: 350px; height: 350px; margin: 20px auto;
+    border-radius: 50%; box-shadow: 0 5px 15px rgba(0,0,0,0.3); border: 6px solid #fff; overflow: hidden;
+}
+.wheel-canvas { width: 100%; height: 100%; border-radius: 50%; transition: transform 4s cubic-bezier(0.1, 0.7, 0.1, 1); transform: rotate(0deg); }
+.wheel-pointer {
+    position: absolute; top: -5px; left: 50%; transform: translateX(-50%); width: 0; height: 0;
+    border-left: 15px solid transparent; border-right: 15px solid transparent; border-top: 35px solid #e74c3c;
+    z-index: 10; filter: drop-shadow(0px 3px 3px rgba(0,0,0,0.4));
+}
+
+.gacha-machine-container { position: relative; width: 240px; height: 380px; margin: 20px auto; }
+.gacha-globe {
+    position: relative; width: 240px; height: 240px; background: rgba(220, 240, 255, 0.4);
+    border: 5px solid #bdc3c7; border-radius: 50%; overflow: hidden; z-index: 2; box-shadow: inset -15px -15px 20px rgba(0,0,0,0.1);
+}
+.gacha-globe::after {
+    content: ""; position: absolute; top: 20px; left: 30px; width: 60px; height: 30px;
+    background: rgba(255, 255, 255, 0.6); border-radius: 50%; transform: rotate(-45deg);
+}
+.gacha-base {
+    position: relative; width: 180px; height: 160px; background: #e74c3c; margin: -40px auto 0;
+    border-radius: 0 0 20px 20px; z-index: 1; box-shadow: inset -10px -10px 15px rgba(0,0,0,0.2);
+}
+.gacha-knob {
+    position: absolute; width: 60px; height: 60px; background: #ecf0f1; border-radius: 50%; top: 40px;
+    left: 50%; transform: translateX(-50%); border: 3px solid #bdc3c7; box-shadow: 0 4px 6px rgba(0,0,0,0.2); transition: transform 0.5s ease-in-out;
+}
+.gacha-knob::before { content: ""; position: absolute; width: 40px; height: 12px; background: #95a5a6; top: 21px; left: 7px; border-radius: 6px; }
+.gacha-knob.turn { transform: translateX(-50%) rotate(360deg); }
+.gacha-chute {
+    position: absolute; width: 70px; height: 50px; background: #2c3e50; bottom: 2px;
+    left: 50%; transform: translateX(-50%); border-radius: 10px 10px 0 0; box-shadow: inset 0 10px 15px rgba(0,0,0,0.5); z-index: 3;
+}
+.gacha-ball {
+    position: absolute; width: 60px; height: 60px; border-radius: 50%; border: 2px solid rgba(0,0,0,0.1);
+    box-shadow: inset -5px -5px 10px rgba(0,0,0,0.2);
+}
+.ball-1 { background: linear-gradient(to bottom, #ff4757 50%, #fff 50%); top: 140px; left: 30px; transform: rotate(15deg); z-index: 1; }
+.ball-2 { background: linear-gradient(to bottom, #1e90ff 50%, #fff 50%); top: 80px; left: 90px; transform: rotate(-25deg); z-index: 2; }
+.ball-3 { background: linear-gradient(to bottom, #2ed573 50%, #fff 50%); top: 120px; left: 140px; transform: rotate(45deg); z-index: 1; }
+.ball-4 { background: linear-gradient(to bottom, #ffa502 50%, #fff 50%); top: 165px; left: 95px; transform: rotate(-10deg); z-index: 3; }
+
+.dropped-ball {
+    position: absolute; width: 60px; height: 60px; border-radius: 50%; border: 2px solid rgba(0,0,0,0.1);
+    z-index: 5; top: 150px; left: 90px; opacity: 0;
+}
+.dropped-ball.drop { animation: drop-animation 0.6s ease-in forwards; }
+@keyframes drop-animation {
+    0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+    60%  { transform: translateY(160px) rotate(180deg); opacity: 1; }
+    90%  { transform: translateY(160px) rotate(180deg); opacity: 1; }
+    100% { transform: translateY(160px) rotate(180deg); opacity: 0; }
+}
+
+.zoom-ball-container { position: relative; width: 200px; height: 200px; margin: 60px auto; opacity: 0; transform: scale(0.1); transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.zoom-ball-container.show { opacity: 1; transform: scale(1); }
+.zoom-ball-top { position: absolute; width: 200px; height: 100px; border-radius: 100px 100px 0 0; top: 0; transition: all 0.6s ease-in-out; z-index: 2; box-shadow: inset -10px -5px 15px rgba(0,0,0,0.1); }
+.zoom-ball-bottom { position: absolute; width: 200px; height: 100px; background: #fff; border-radius: 0 0 100px 100px; bottom: 0; border-top: 4px solid #ccc; transition: all 0.6s ease-in-out; z-index: 1; box-shadow: inset -10px -10px 15px rgba(0,0,0,0.1); }
+.zoom-ball-container.open .zoom-ball-top { transform: translateY(-80px) rotate(-15deg); opacity: 0; }
+.zoom-ball-container.open .zoom-ball-bottom { transform: translateY(80px) rotate(15deg); opacity: 0; }
+.gacha-result-icon { position: absolute; top: 50%; left: 50%; font-size: 60px; transform: translate(-50%, -50%) scale(0); transition: transform 0.6s 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 0; }
+.zoom-ball-container.open .gacha-result-icon { transform: translate(-50%, -50%) scale(1.5); }
+
+@keyframes ball-mix-1 { 0% { margin-top: 0px; margin-left: 0px; } 25% { margin-top: -20px; margin-left: -15px; } 50% { margin-top: 15px; margin-left: -20px; } 75% { margin-top: 20px; margin-left: 15px; } 100% { margin-top: 0px; margin-left: 0px; } }
+@keyframes ball-mix-2 { 0% { margin-top: 0px; margin-left: 0px; } 25% { margin-top: 15px; margin-left: 20px; } 50% { margin-top: -25px; margin-left: 10px; } 75% { margin-top: -10px; margin-left: -20px; } 100% { margin-top: 0px; margin-left: 0px; } }
+@keyframes ball-mix-3 { 0% { margin-top: 0px; margin-left: 0px; } 33% { margin-top: -30px; margin-left: 5px; } 66% { margin-top: 25px; margin-left: -5px; } 100% { margin-top: 0px; margin-left: 0px; } }
+.ball-1.mixing { animation: ball-mix-1 0.25s infinite; }
+.ball-2.mixing { animation: ball-mix-2 0.35s infinite; }
+.ball-3.mixing { animation: ball-mix-3 0.28s infinite; }
+.ball-4.mixing { animation: ball-mix-1 0.32s infinite reverse; }
+
+/* ==============================
+   10. RWD 手機版設定
+   ============================== */
+@media (max-width: 600px) {
+    #pickButton { padding: 12px 30px; font-size: 18px; }
+    .restaurantPanel, .leftMenu { width: 85%; }
+    #toggleLeftMenuBtn { top: 10px; left: 10px; }
+    #togglePanelBtn { top: 10px; right: 10px; }
+    .menuImages { gap: 10px; }
+    .menuImage { width: 45%; height: auto; }
 }
 
 /* ==============================
-   我的最愛標籤樣式 (洗掉橘色，換成極簡黑白膠囊)
+   11. 側邊欄：可點擊的餐廳名字
    ============================== */
-.fav-tag {
-    display: inline-block;
-    background-color: #f9fafb;
-    color: #111;
-    border: 1px solid #e5e7eb;
-    padding: 4px 12px;
-    border-radius: 15px;
-    font-size: 12px;
-    font-weight: 600;
-    margin: 0 6px 6px 0;
+.clickable-name {
+    cursor: pointer;
+    transition: color 0.2s ease;
 }
-.fav-empty { font-size: 12px; color: #9ca3af; }
+.clickable-name:hover {
+    color: #ff9800; 
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}

@@ -8,12 +8,11 @@
 </head>
 <body>
 
-    <!-- 新增：左側選單按鈕 -->
+    <!-- ==============================
+         左側選單 (導覽列)
+         ============================== -->
     <button id="toggleLeftMenuBtn">☰</button>
-
-    <!-- 新增：左側可拉式選單面板 -->
     <div id="leftMenu" class="leftMenu">
-        <!-- 新增：頂部標題區塊，用來裝 NCU 和 ✕ -->
         <div class="leftMenu-header">
             <span class="leftMenu-logo">NCU</span>
             <button id="closeLeftMenuBtn">✕</button>
@@ -25,12 +24,12 @@
         </ul>
     </div>
 
+    <!-- ==============================
+         主畫面標題與抽籤方式切換
+         ============================== -->
     <button id="togglePanelBtn">⚙️</button>
-
     <h1 id="title">今天吃什麼？(中央)</h1>
-    <p></p>
-
-    <!-- 抽籤方式：現代膠囊切換 -->
+    
     <div id="drawMethodSelector" class="modern-selector">
         <input type="radio" id="method-basic" name="drawMethod" value="basic" checked>
         <label for="method-basic" class="selector-item">🎲 基礎</label>
@@ -46,25 +45,29 @@
 
     <button id="pickButton">開始抽！</button>
 
+    <!-- ==============================
+         主要內容佈局 (結果卡片與右側面板)
+         ============================== -->
     <div class="container">
         <div class="leftPanel"></div>
+        
+        <!-- 抽籤結果顯示區 -->
         <div class="mainContent">
             <div id="result">
                 還沒有抽餐廳
             </div>
         </div>
 
+        <!-- 右側篩選面板 -->
         <div class="restaurantPanel">
-            <!-- 新增：右側面板頂部排版 -->
             <div class="panel-header">
                 <span class="panel-title">篩選餐廳</span>
                 <button id="closePanelBtn">✕</button>
             </div>
 
-            <!-- 📍 選擇地點 -->
+            <!-- 篩選：地點 -->
             <div class="filter-section">
                 <label class="filter-label">選擇地點</label>
-                <!-- 加回 onchange="updatePreview()" -->
                 <select id="locationSelector" onchange="updatePreview()">
                     <option value="all">全地點</option>
                     <option value="後門">後門</option>
@@ -77,7 +80,7 @@
                 </select>
             </div>
 
-            <!-- 選擇時段 (全新滑動動畫版) -->
+            <!-- 篩選：時段 -->
             <div class="filter-section">
                 <label class="filter-label">選擇時段</label>
                 <div class="sliding-segmented-control">
@@ -90,19 +93,18 @@
                     <input type="radio" id="time-dinner" name="timeSlot" value="dinner" onchange="updatePreview()">
                     <label for="time-dinner">晚餐</label>
 
-                    <!-- 負責滑動的白色色塊 -->
                     <div class="slide-indicator"></div>
                 </div>
             </div>
 
-            <!-- ❤️ 我的最愛 -->
+            <!-- 篩選：我的最愛 -->
             <div class="filter-section">
                 <div class="toggle-section">
                     <div class="toggle-text-group">
                         <label class="filter-label" style="margin-bottom: 0;">我的最愛</label>
                     </div>
                     <label class="switch">
-                        <input type="checkbox" id="onlyFavorites" onchange="updatePreview(); toggleFavList();">
+                        <input type="checkbox" id="onlyFavorites" onchange="toggleFavList()">
                         <span class="slider round"></span>
                     </label>
                 </div>
@@ -111,18 +113,20 @@
             
             <hr class="filter-divider">
             
-            <!-- 選擇 / 取消 按鈕 -->
+            <!-- 全選與取消按鈕 -->
             <div class="filter-actions">
-                <button id="selectAllBtn" class="action-btn" onclick="selectAll()">全部選取</button>
-                <button id="deselectAllBtn" class="action-btn outline" onclick="deselectAll()">全部取消</button>
+                <button id="selectAllBtn" class="action-btn">全部選取</button>
+                <button id="deselectAllBtn" class="action-btn outline">全部取消</button>
             </div>
 
-            <!-- 👇 新增這行：把裝餐廳清單的盒子加回來 👇 -->
+            <!-- 餐廳動態列表容器 -->
             <div id="restaurantCheckboxes" style="text-align: left; padding-left: 5px; margin-top: 15px;"></div>
-            
         </div>
     </div>
 
+    <!-- ==============================
+         圖片放大燈箱
+         ============================== -->
     <div id="lightbox">
         <img id="lightboxImage">
     </div>
