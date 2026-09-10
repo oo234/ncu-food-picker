@@ -154,7 +154,8 @@ body {
     /* 卡片背景 */
     background-color: white;
     /* 卡片寬度 */
-    width: 600px;
+    width: 90%;          /* 在手機上佔滿螢幕 90% 的寬度 */
+    max-width: 600px;    /* 在電腦上最大不超過 600px，保持原本的好看比例 */
     /* 讓卡片置中 */
     margin: 30px auto;
     /* 卡片內部空間 */
@@ -211,6 +212,21 @@ body {
 
 /* 手機版 */
 @media (max-width:600px){
+    /* 縮小抽籤按鈕的左右留白，避免按鈕被切掉 */
+    #pickButton {
+        padding: 12px 30px;
+        font-size: 18px;
+    }
+    
+    /* 調整左右面板寬度，避免佔滿整個手機畫面導致點不到外面的叉叉 */
+    .restaurantPanel, .leftMenu {
+        width: 85%;
+    }
+    
+    /* 調整頂部兩個小圖示按鈕的位置，避免被手機的「瀏海」干擾 */
+    #toggleLeftMenuBtn { top: 10px; left: 10px; }
+    #togglePanelBtn { top: 10px; right: 10px; }
+    
     .menuImages{
         gap:10px;
     }
