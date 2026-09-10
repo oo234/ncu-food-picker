@@ -350,33 +350,50 @@ document.getElementById("pickButton").addEventListener("click", function () {
     const todayName = days[today.getDay()];
     const todayHours = randomRestaurant.openingHours[todayName];
 
+    // ==============================
+    // 隨機更換卡片背景圖片 (1~29)
+    // ==============================
+    // 隨機產生一個 1 到 29 之間的整數
+    const randomNum = Math.floor(Math.random() * 29) + 1;
+    
+    // 將數字與檔名結合，例如抽出 5，就會變成 "5.jpg"
+    const randomCardBg = 'card/' + randomNum + '.jpg';
+    
+    // ==============================
+
     const finalResultHtml = `
-        <h2 class="restaurantTitle">
-            <img src="${randomRestaurant.restaurantImage}" class="restaurantImage">
-            ${randomRestaurant.name}
-        </h2>
-        <p class="restaurantType">
-            類型：${randomRestaurant.type}
-            <span class="typeIcon">${randomRestaurant.typeIcon}</span>
-        </p>
-        <p>🕒 今日營業時間：</p>
-        <p>
-            ${todayHours && todayHours.length > 0 
-                ? todayHours.map(time => time.open + " - " + time.close).join("<br>") 
-                : "今日公休"
-            }
-        </p>
-        <p>🧾 菜單：</p>
-        <div class="menuImages">
-            ${randomRestaurant.menuImages && randomRestaurant.menuImages.length > 0
-                ? randomRestaurant.menuImages.map(image => `<img src="${image}" class="menuImage" onclick="openImage('${image}')">`).join("")
-                : "目前沒有菜單圖片"
-            }
+        <!-- 新增：只在結果出現時才載入的背景圖 -->
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('${randomCardBg}'); background-size: cover; background-position: center; z-index: 0;"></div>
+
+        <!-- 新增：把原本的內容用相對定位包起來，確保文字與按鈕會浮在圖片上方 -->
+        <div style="position: relative; z-index: 1;">
+            <h2 class="restaurantTitle">
+                <img src="${randomRestaurant.restaurantImage}" class="restaurantImage">
+                ${randomRestaurant.name}
+            </h2>
+            <p class="restaurantType">
+                類型：${randomRestaurant.type}
+                <span class="typeIcon">${randomRestaurant.typeIcon}</span>
+            </p>
+            <p>🕒 今日營業時間：</p>
+            <p>
+                ${todayHours && todayHours.length > 0 
+                    ? todayHours.map(time => time.open + " - " + time.close).join("<br>") 
+                    : "今日公休"
+                }
+            </p>
+            <p>🧾 菜單：</p>
+            <div class="menuImages">
+                ${randomRestaurant.menuImages && randomRestaurant.menuImages.length > 0
+                    ? randomRestaurant.menuImages.map(image => `<img src="${image}" class="menuImage" onclick="openImage('${image}')">`).join("")
+                    : "目前沒有菜單圖片"
+                }
+            </div>
+            <br>
+            <a href="${randomRestaurant.map}" target="_blank">📍 查看位置</a>
+            <br><br>
+            <button onclick="isSpinning=false; updatePreview();" style="padding:10px 20px; background:#ccc; border:none; border-radius:8px; cursor:pointer;">重新抽籤</button>
         </div>
-        <br>
-        <a href="${randomRestaurant.map}" target="_blank">📍 查看位置</a>
-        <br><br>
-        <button onclick="isSpinning=false; updatePreview();" style="padding:10px 20px; background:#ccc; border:none; border-radius:8px; cursor:pointer;">重新抽籤</button>
     `;
 
     if (drawMethod === "basic") {
@@ -537,7 +554,7 @@ function openImage(image){
 lightbox.addEventListener("click", () => lightbox.style.display = "none");
 
 // ==============================
-// 側邊篩選面板 (Drawer) 控制
+// 側邊篩選面板 (Drawer) 控制 (原本右邊的)
 // ==============================
 const togglePanelBtn = document.getElementById("togglePanelBtn");
 const closePanelBtn = document.getElementById("closePanelBtn");
@@ -548,4 +565,18 @@ if (togglePanelBtn && restaurantPanel) {
 }
 if (closePanelBtn && restaurantPanel) {
     closePanelBtn.addEventListener("click", () => restaurantPanel.classList.remove("open"));
+}
+
+// ==============================
+// 左側選單面板 (Drawer) 控制 (我們剛剛新增的)
+// ==============================
+const toggleLeftMenuBtn = document.getElementById("toggleLeftMenuBtn");
+const closeLeftMenuBtn = document.getElementById("closeLeftMenuBtn");
+const leftMenu = document.getElementById("leftMenu");
+
+if (toggleLeftMenuBtn && leftMenu) {
+    toggleLeftMenuBtn.addEventListener("click", () => leftMenu.classList.toggle("open"));
+}
+if (closeLeftMenuBtn && leftMenu) {
+    closeLeftMenuBtn.addEventListener("click", () => leftMenu.classList.remove("open"));
 }

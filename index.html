@@ -8,16 +8,40 @@
 </head>
 <body>
 
-    <button id="togglePanelBtn">⚙️ 篩選餐廳</button>
+    <!-- 新增：左側選單按鈕 -->
+    <button id="toggleLeftMenuBtn">☰</button>
 
-    <h1 id="title">🍔 中央今天吃什麼？</h1>
-    <p>今天不知道要吃什麼嗎？讓我幫你決定！</p>
+    <!-- 新增：左側可拉式選單面板 -->
+    <div id="leftMenu" class="leftMenu">
+        <!-- 新增：頂部標題區塊，用來裝 NCU 和 ✕ -->
+        <div class="leftMenu-header">
+            <span class="leftMenu-logo">NCU</span>
+            <button id="closeLeftMenuBtn">✕</button>
+        </div>
+        <ul class="menu-list">
+            <li><a href="#">🏠 首頁 (中央吃什麼)</a></li>
+            <li><a href="#">📋 附近餐廳地圖</a></li>
+            <li><a href="#">⚙️ 系統設定</a></li>
+        </ul>
+    </div>
 
-    <!-- 抽籤方式獨立放在按鈕上方 -->
-    <div id="drawMethodSelector" style="margin-bottom: 20px;">
-        <label style="margin-right: 15px; cursor: pointer;"><input type="radio" name="drawMethod" value="basic" checked> 🎲 基礎秒抽</label>
-        <label style="margin-right: 15px; cursor: pointer;"><input type="radio" name="drawMethod" value="roulette"> 🎡 幸運轉盤</label>
-        <label style="cursor: pointer;"><input type="radio" name="drawMethod" value="gacha"> 🎁 驚喜扭蛋</label>
+    <button id="togglePanelBtn">⚙️</button>
+
+    <h1 id="title">今天吃什麼？(中央)</h1>
+    <p></p>
+
+    <!-- 抽籤方式：現代膠囊切換 -->
+    <div id="drawMethodSelector" class="modern-selector">
+        <input type="radio" id="method-basic" name="drawMethod" value="basic" checked>
+        <label for="method-basic" class="selector-item">🎲 基礎秒抽</label>
+
+        <input type="radio" id="method-roulette" name="drawMethod" value="roulette">
+        <label for="method-roulette" class="selector-item">🎡 幸運轉盤</label>
+
+        <input type="radio" id="method-gacha" name="drawMethod" value="gacha">
+        <label for="method-gacha" class="selector-item">🎁 驚喜扭蛋</label>
+
+        <div class="slider"></div>
     </div>
 
     <button id="pickButton">開始抽！</button>
@@ -31,8 +55,11 @@
         </div>
 
         <div class="restaurantPanel">
-            <button id="closePanelBtn">❌ 關閉篩選</button>
-            <h3>🍴 選擇餐廳</h3>
+            <!-- 新增：右側面板頂部排版 -->
+            <div class="panel-header">
+                <span class="panel-title">🍴 篩選餐廳</span>
+                <button id="closePanelBtn">✕</button>
+            </div>
             
             <!-- 新增：地點選擇器 -->
             <div id="locationSelector" style="margin-bottom: 15px; text-align: left; padding-left: 10px;">

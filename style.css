@@ -7,34 +7,41 @@ body {
     background-color: #f5f5f5;
     /* 讓所有文字、按鈕都置中 */
     text-align: center;
-    /* 網頁使用的字體
-       Arial 找不到時，就使用系統預設 sans-serif */
+    /* 網頁使用的字體 */
     font-family: Arial, sans-serif;
 }
 
 
 /* ==============================
-   「開始抽！」按鈕
-   # 代表找到 id="pickButton"
+   「開始抽！」按鈕 (溫和質感與獨立換行)
    ============================== */
-
 #pickButton {
-    /* 按鈕背景顏色 */
-    background-color: #ff9800;
-    /* 按鈕文字顏色 */
+    display: block;                   /* 關鍵：強制按鈕獨立換行，不跟選單擠在一起 */
+    margin: 10px auto 30px auto;      /* 讓按鈕置中，並與上下保持適當距離 */
+    background: linear-gradient(135deg, #ffb74d, #f57c00); /* 降低飽和度，換成溫和的蜜桃橘 */
     color: white;
-    /* 移除瀏覽器預設邊框 */
     border: none;
-    /* 按鈕內部留白
-       第一個數字：上下
-       第二個數字：左右 */
-    padding: 15px 30px;
-    /* 按鈕文字大小 */
-    font-size: 20px;
-    /* 按鈕圓角 */
-    border-radius: 10px;
-    /* 滑鼠移到按鈕時變成手指 */
+    padding: 16px 45px;
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    border-radius: 50px;
     cursor: pointer;
+    box-shadow: 0 8px 15px rgba(245, 124, 0, 0.25); /* 陰影顏色配合調淡 */
+    transition: all 0.3s ease;
+}
+
+/* 滑鼠移上去的特效：微微上浮並發光 */
+#pickButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 20px rgba(245, 124, 0, 0.35);
+    background: linear-gradient(135deg, #ffcc80, #fb8c00); /* 懸浮時溫和提亮 */
+}
+
+/* 滑鼠點擊下去的瞬間：壓下按鈕的反饋 */
+#pickButton:active {
+    transform: translateY(1px);
+    box-shadow: 0 3px 8px rgba(245, 124, 0, 0.2);
 }
 
 /* ==============================
@@ -81,42 +88,62 @@ body {
     right: 0; /* 滑動到畫面邊緣 */
 }
 
-/* 打開面板的懸浮按鈕樣式 */
+/* 打開右側面板的乾淨圖示樣式 */
 #togglePanelBtn {
     position: fixed;
     top: 20px;
     right: 20px;
-    background-color: #ff9800;
-    color: white;
+    background: transparent; /* 背景透明 */
+    color: #333;
     border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 8px;
+    font-size: 28px;         /* 齒輪圖案稍微放大 */
     cursor: pointer;
-    z-index: 999; /* 確保按鈕在畫面上方 */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 999;
+    padding: 5px 10px;
+    box-shadow: none;        /* 移除原有的陰影 */
+    transition: transform 0.3s; /* 加入平滑動畫 */
 }
 
+/* 滑鼠移到齒輪上的效果 */
 #togglePanelBtn:hover {
-    background-color: #e68900;
+    background: transparent;
+    transform: scale(1.1) rotate(25deg); /* 滑鼠移過去時稍微放大並轉動齒輪 */
 }
 
-/* 關閉面板的按鈕樣式 */
-#closePanelBtn {
-    display: block;
-    width: 100%;
-    text-align: right;
-    background: none;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
+.panel-header {
+    display: flex;
+    justify-content: space-between; /* 標題靠左，叉叉靠右 */
+    align-items: center;            /* 垂直置中 */
     margin-bottom: 15px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;  /* 底部淡灰色分隔線 */
 }
 
+/* 右側面板標題文字 */
+.panel-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* 關閉篩選的「叉叉」圖示樣式 */
+#closePanelBtn {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: #555;
+    cursor: pointer;
+    padding: 5px 12px;
+    border-radius: 8px;
+    transition: background 0.2s;
+    width: auto;             /* 覆蓋掉舊版的 100% 寬度 */
+    margin-bottom: 0;        /* 覆蓋掉舊版的底部邊距 */
+}
+
+/* 滑鼠移到叉叉上的效果 */
 #closePanelBtn:hover {
-    opacity: 0.7;
+    background: #f0f0f0;     /* 變成淺灰底色 */
+    opacity: 1;              /* 取消舊版的變透明效果 */
 }
 
 /* ==============================
@@ -136,6 +163,10 @@ body {
     border-radius: 15px;
     /* 陰影效果 */
     box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+    /* 新增這行：讓背景圖片乖乖待在圓角裡面，不會凸出去 */
+    overflow: hidden;
+    /* 新增這行：讓結果畫面裡的背景圖片以此卡片為範圍 */
+    position: relative;
 }
 
 #result a {
@@ -574,3 +605,179 @@ body {
 .ball-3.mixing { animation: ball-mix-3 0.28s infinite; }
 /* 讓橘色球借用軌跡 1，但是倒著跑，確保絕對不會跟別的球同步！ */
 .ball-4.mixing { animation: ball-mix-1 0.32s infinite reverse; }
+
+/* ==============================
+   左側選單面板
+   ============================== */
+.leftMenu {
+    position: fixed;
+    top: 0;
+    left: -300px; /* 預設隱藏在畫面左側外面 */
+    width: 250px;
+    height: 100vh; /* 高度佔滿整個螢幕 */
+    background: white;
+    padding: 20px;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.2); /* 在右側加上陰影 */
+    transition: left 0.3s ease-in-out; /* 加入滑動出現的動畫效果 */
+    z-index: 1000; /* 確保它在畫面最上層 */
+}
+
+/* 左側面板展開狀態 */
+.leftMenu.open {
+    left: 0; /* 滑動到畫面邊緣 */
+}
+
+/* 打開左側面板的乾淨圖示樣式 */
+#toggleLeftMenuBtn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: transparent; /* 把背景變成透明的 */
+    color: #333;             /* 字體顏色改成深灰色 */
+    border: none;
+    font-size: 24px;         /* 把字體放大，讓 ☰ 更像一個大圖示 */
+    cursor: pointer;
+    z-index: 999;
+    padding: 5px 10px;
+    box-shadow: none;        /* 移除按鈕的立體陰影 */
+    transition: color 0.2s;  /* 增加變色的平滑過渡動畫 */
+}
+
+/* 滑鼠移上去時的效果 */
+#toggleLeftMenuBtn:hover {
+    color: #ff9800; /* 滑鼠移過去時，字體變成橘色 (和你網站的主色調一致) */
+    background: transparent; /* 保持背景透明 */
+}
+
+/* 新增：選單頂部排版 (讓 NCU 靠左，✕ 靠右) */
+.leftMenu-header {
+    display: flex;
+    justify-content: space-between; /* 左右撐開 */
+    align-items: center;            /* 垂直置中 */
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;  /* 下方加一條淡淡的分隔線 */
+}
+
+/* NCU 文字樣式 */
+.leftMenu-logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    letter-spacing: 2px; /* 字元間距拉開一點更好看 */
+}
+
+/* 關閉面板的「叉叉」圖示樣式 */
+#closeLeftMenuBtn {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: #555;          /* 低調的灰色 */
+    cursor: pointer;
+    padding: 5px 12px;
+    border-radius: 8px;   /* 加上一點圓角 */
+    transition: background 0.2s; /* 把動畫改成只有背景色變化 */
+}
+
+/* 滑鼠移到叉叉上的效果 (不再變紅) */
+#closeLeftMenuBtn:hover {
+    background: #f0f0f0;  /* 滑鼠移過去變成淡淡的淺灰色背景 */
+}
+
+/* 選單清單樣式 */
+.menu-list {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.menu-list li {
+    margin-bottom: 10px;
+}
+
+.menu-list a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    display: block;
+    padding: 12px;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.menu-list a:hover {
+    background: #f0f0f0;
+}
+
+/* ==============================
+   現代化：抽籤方式選擇器 (支援滑動特效)
+   ============================== */
+
+/* 1. 隱藏預設的圓圈圈 */
+.modern-selector input[type="radio"] {
+    display: none;
+}
+
+/* 2. 外圍的灰色凹槽底座 */
+.modern-selector {
+    position: relative; /* 關鍵：讓滑塊知道要在這個範圍內移動 */
+    display: inline-flex;
+    background-color: #e4e4e9;
+    border-radius: 30px;
+    padding: 6px;
+    margin-bottom: 25px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
+}
+
+/* 3. 每一個選項標籤 (文字與圖示) */
+.selector-item {
+    position: relative; 
+    z-index: 2;              /* 確保文字在白色滑塊的「上方」 */
+    flex: 1;                 /* 讓三個選項的寬度完美平分 */
+    justify-content: center; /* 內容置中 */
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    color: #777;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.selector-item:hover {
+    color: #333;
+}
+
+/* 4. 文字被選中時變色 (不再設定背景，交給下方的 slider) */
+.modern-selector input[type="radio"]:checked + .selector-item {
+    color: #ff9800; 
+}
+
+/* 5. 獨立的白色滑塊 */
+.slider {
+    position: absolute;
+    top: 6px;
+    bottom: 6px;
+    left: 6px;
+    width: calc((100% - 12px) / 3); /* 自動計算 1/3 的寬度 */
+    background-color: #ffffff;
+    border-radius: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 1; /* 墊在文字下面 */
+    /* 物理回彈感的滑動動畫 */
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1.1); 
+}
+
+/* 6. 控制滑塊左右移動的魔法 */
+input#method-basic:checked ~ .slider {
+    transform: translateX(0);
+}
+input#method-roulette:checked ~ .slider {
+    transform: translateX(100%);
+}
+input#method-gacha:checked ~ .slider {
+    transform: translateX(200%);
+}
