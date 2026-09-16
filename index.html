@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>中央今天吃什麼？</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -55,6 +60,14 @@
         <div class="mainContent">
             <div id="result">
                 還沒有抽餐廳
+            </div>
+
+            <!-- 動態地圖顯示區塊 (預設隱藏) -->
+            <div id="mapContainer" style="display: none; width: 90%; max-width: 800px; margin: 20px auto; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); background: white;">
+                <!-- 這是用來裝 Leaflet 地圖的空盒子，設定好高度 -->
+                <div id="map" style="width: 100%; height: 500px; z-index: 1;"></div>
+                
+                <button onclick="backToDraw()" style="margin: 15px; padding: 10px 20px; background: #333; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">返回抽籤</button>
             </div>
         </div>
 

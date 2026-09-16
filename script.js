@@ -670,3 +670,94 @@ window.showSpecificCard = function(event, restaurantName) {
         rightPanel.classList.remove('open');
     }
 };
+
+// ==============================
+// 11. 動態地圖模式 (Leaflet.js) 與畫面切換
+// ==============================
+let ncuMap; // 宣告全域變數來裝地圖
+
+function initMap() {
+    if (ncuMap) {
+        ncuMap.invalidateSize(); 
+        return; 
+    }
+
+    // 1. 在建立地圖的時候，加上 { attributionControl: false } 把右下角的標籤徹底隱藏
+    ncuMap = L.map('map', {
+        attributionControl: false 
+    }).setView([24.9682, 121.1944], 15);
+
+    // 👇 1. 將剛剛複製的金鑰貼在引號裡面
+    const maptilerKey = 'TKNU2YdrV041zVOiU9vy';
+
+    // 👇 2. 載入 MapTiler 的 Dataviz Light (專門給開發者用的極簡無雜訊底圖)
+    L.tileLayer('https://api.maptiler.com/maps/dataviz-light/256/{z}/{x}/{y}.png?key=' + maptilerKey, {
+        maxNativeZoom: 20, // 支援高畫質放大到 20 級 (不會糊掉！)
+        maxZoom: 22        // 強制允許放大到 22 級，讓蜘蛛網特效可以完美展開
+    }).addTo(ncuMap);
+
+    const markers = L.markerClusterGroup({
+        spiderfyOnMaxZoom: true,
+        disableClusteringAtZoom: 18 
+    });
+
+    restaurants.forEach(restaurant => {
+        if (restaurant.coords) {
+            const [lat, lng] = restaurant.coords.split(',').map(Number);
+            const emojiIcon = restaurant.typeIcon || "🍽️";
+
+            // 👇 升級 2：把圖標縮小，讓定位更精準
+            const customMarkerIcon = L.divIcon({
+                className: 'custom-map-marker',
+                html: emojiIcon,
+                iconSize: [24, 24],             // 從 30 縮小成 24
+                iconAnchor: [12, 12],           // 錨點精準對齊正中心 (24 的一半)
+                popupAnchor: [0, -12]           // 彈出卡片的高度跟著下修
+            });
+
+            const marker = L.marker([lat, lng], { icon: customMarkerIcon });
+            
+            marker.bindPopup(`
+                <div style="text-align: center; min-width: 120px;">
+                    <b style="font-size: 16px; color: #333;">${restaurant.name}</b><br>
+                    <span style="font-size: 13px; color: #666;">${restaurant.type}</span><br>
+                    <span style="font-size: 12px; color: #999;">📍 ${restaurant.place}</span>
+                </div>
+            `);
+
+            markers.addLayer(marker);
+        }
+    });
+
+    ncuMap.addLayer(markers);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const mapLink = document.querySelectorAll(".menu-list li a")[1];
+    if (mapLink) {
+        mapLink.addEventListener("click", function(event) {
+            event.preventDefault(); 
+            
+            // 隱藏抽籤 UI
+            document.getElementById("result").style.display = "none";
+            document.getElementById("pickButton").style.display = "none";
+            document.getElementById("drawMethodSelector").style.display = "none";
+            
+            // 顯示地圖區塊
+            document.getElementById("mapContainer").style.display = "block";
+            document.getElementById("leftMenu").classList.remove("open");
+            
+            // 延遲一點點呼叫地圖，確保 mapContainer 已經顯示 (DOM 計算完成)，地圖才不會變形
+            setTimeout(() => {
+                initMap();
+            }, 100);
+        });
+    }
+});
+
+window.backToDraw = function() {
+    document.getElementById("mapContainer").style.display = "none";
+    document.getElementById("result").style.display = "block";
+    document.getElementById("pickButton").style.display = "block";
+    document.getElementById("drawMethodSelector").style.display = "inline-flex"; 
+};

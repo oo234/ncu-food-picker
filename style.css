@@ -419,3 +419,28 @@ input[type="checkbox"]:not(#onlyFavorites) { accent-color: #4b5563; width: 16px;
     text-decoration: underline;
     text-underline-offset: 4px;
 }
+
+/* ==============================
+   12. 地圖專屬自訂地標 (Leaflet.js)
+   ============================== */
+.custom-map-marker {
+    background-color: #ffffff;
+    border-radius: 50%;
+    border: 2px solid #ff9800; 
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3); 
+    
+    display: flex !important; 
+    align-items: center; 
+    justify-content: center;
+    
+    /* 👇 把這裡的字體稍微縮小，配合變小的圓圈 👇 */
+    font-size: 12px; 
+    
+    transition: transform 0.2s ease;
+}
+
+/* 滑鼠移到地標上時，微微放大 */
+.custom-map-marker:hover {
+    transform: scale(1.15);
+    z-index: 1000 !important; 
+}

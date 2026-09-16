@@ -5,6 +5,7 @@
         "restaurantImage": "sign/7-11.jpg",
         "typeIcon": "🏪",
         "place": "後門",
+        "coords": "24.965489072172765, 121.19106252978301",
         "openingHours": {
             "Monday": [
                 {
@@ -59,6 +60,7 @@
         "restaurantImage": "sign/掌窩.png",
         "typeIcon": "🥪",
         "place": "後門",
+        "coords": "24.965434350122827, 121.19101625213659",
         "openingHours": {
             "Monday": [
                 {
